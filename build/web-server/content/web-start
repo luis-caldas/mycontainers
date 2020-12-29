@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/nmods/node_modules/.bin/http-server -p 443 -S -K /etc/ssl/server.key -C /etc/ssl/server.crt
+

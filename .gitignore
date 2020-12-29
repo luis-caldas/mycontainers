@@ -1,1 +1,6 @@
 shared/asterisk/conf/conf.mine/*
+!shared/asterisk/conf/conf.mine/README.md
+shared/content/*
+!shared/content/README.md
+ssl/*
+!ssl/README.md

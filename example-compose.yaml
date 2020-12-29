@@ -39,6 +39,19 @@ services:
         ports:
             - "2222:22/tcp"
 
+    # Content delivery through HTTP
+    content:
+        container_name: content
+        hostname: newspeak
+        restart: unless-stopped
+        build: /data/docker/web-server/content
+        image: local/content
+        volumes:
+            - "./ssl:/etc/ssl"
+            - "./shared/content:/web"
+        ports:
+            - "443:443/tcp"
+
     # HTTP redirect
     redirect:
         container_name: redirect
