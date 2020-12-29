@@ -15,6 +15,16 @@ services:
             - "your_asterisk_conf.mine_path:/etc/asterisk/conf.mine"
         network_mode: host
 
+    # Shadow socks
+    udns:
+        container_name: udns
+        hostname: denial
+        restart: unless-stopped
+        build: ./build/dns
+        image: local/dns
+        environment:
+            - KEY=your_freedns_key
+
     # My minecraft server
     minecraft:
         container_name: minecraft
