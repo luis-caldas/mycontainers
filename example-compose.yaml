@@ -39,3 +39,12 @@ services:
         ports:
             - "2222:22/tcp"
 
+    # HTTP redirect
+    redirect:
+        container_name: redirect
+        hostname: grandline
+        restart: unless-stopped
+        build: ./build/web-server/redirect
+        image: local/redirect
+        ports:
+            - "80:80/tcp"
