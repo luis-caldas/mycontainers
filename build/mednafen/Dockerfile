@@ -7,11 +7,14 @@ FROM frolvlad/alpine-glibc
 # Install c++ libraries
 RUN apk add libstdc++ libstdc++6
 
+# Copy our configuration to the container
+COPY conf /ms
+
 # Change the workdir to a default folder
 WORKDIR /ms
 
 # Add the server blob to the workdir
-COPY "mednafen-server" "mednafen-server"
+COPY mednafen-server mednafen-server
 
 # Expose all needed ports
 EXPOSE 4046
