@@ -24,7 +24,7 @@ services:
         environment:
             - "EULA=TRUE"
         volumes:
-            - "./minecraft:/data"
+            - "your_minecraft_folder:/data"
         ports:
             - "25565:25565/tcp"
 
@@ -57,7 +57,7 @@ services:
             "-W", "-p", "-g", "log level = 3", "-S"
         ]
         volumes: 
-            - "your_smbpasswd_file:/psw/smbpasswd"
+            - "your_smbpasswd_path/smbpasswd:/psw/smbpasswd"
             - "yout_share_path:/share/DVD"
         ports:
             - "137:137/udp"
@@ -100,7 +100,7 @@ services:
         restart: unless-stopped
         image: phlak/mumble
         volumes:
-            - "your_config_path:/etc/mumble/config.ini"
+            - "your_config_path/config.ini:/etc/mumble/config.ini"
             - "your_ssl_path:/etc/ssl"
         ports:
             - "64738:64738/udp"
