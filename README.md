@@ -10,10 +10,3 @@ Example of how the containers could be configured with docker-compose
 
 This folder contains Dockerfiles and needed configuration files for building the my containers
 
-#### `shared/`
-
-This folder contains shared configurations that are mounted volumes on the container and can be accessed with the container running
-
-#### `keys/`
-
-Put your keys in this folder
