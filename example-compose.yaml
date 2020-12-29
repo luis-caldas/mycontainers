@@ -49,7 +49,7 @@ services:
         volumes:
             - "./keys/server.key:/etc/ssl/server.key"
             - "./keys/server.crt:/etc/ssl/server.crt"
-            - "./shared/content:/web"
+            - "./shared//web-server/content:/web"
         ports:
             - "443:443/tcp"
 
