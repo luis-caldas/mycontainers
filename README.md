@@ -1,10 +1,10 @@
 # My Containers
 
-Collection of containers in `docker-compose` format and also `Dockerfiles`
+Collection of containers
 
-#### `all-compose.yaml`
+#### `example-compose.yaml`
 
-YAML file containing the instructions to build and run the containers
+Example of how the containers could be configured with docker-compose
 
 #### Folders
 
