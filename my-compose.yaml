@@ -1,0 +1,217 @@
+# Use version 2
+version: "2.0"
+
+# My service collection
+services:
+
+    # Telephony asterisk
+    asterisk:
+        container_name: asterisk
+        hostname: symbols
+        restart: unless-stopped
+        build: ./build/asterisk
+        image: local/asterisk
+        volumes:
+            - "your_asterisk_conf.mine_path:/etc/asterisk/conf.mine"
+        network_mode: host
+
+    # My minecraft server
+    minecraft:
+        container_name: minecraft
+        hostname: blocky
+        restart: unless-stopped
+        image: itzg/minecraft-server
+        environment:
+            - "EULA=TRUE"
+        volumes:
+            - "./minecraft:/data"
+        ports:
+            - "25565:25565/tcp"
+
+    # Shadow socks
+    shadow:
+        container_name: shadow
+        hostname: shade
+        restart: unless-stopped
+        image: shadowsocks/shadowsocks-libev
+        environment:
+            - METHOD=aes-256-gcm
+            - PASSWORD=your_password
+            - DNS_ADDRS=your_dns_addr
+        ports:
+            - "8388:8388/tcp"
+
+    # Samba shares
+    samba:
+        container_name: samba
+        hostname: bossanova
+        restart: unless-stopped
+        image: dperson/samba
+        environment:
+            - "TZ=Europe/Dublin"
+            - "USERID=1000"
+            - "GROUPID=1000"
+        command: [
+            "-i", "/psw/smbpasswd", 
+            "-s", "ps2;/share;yes;yes;yes;all;none;lakituen;PS2 games for OPL",
+            "-W", "-p", "-g", "log level = 3", "-S"
+        ]
+        volumes: 
+            - "your_smbpasswd_file:/psw/smbpasswd"
+            - "yout_share_path:/share/DVD"
+        ports:
+            - "137:137/udp"
+            - "138:138/udp"
+            - "139:139/tcp"
+            - "445:445/tcp"
+
+    # DNS server and adblocker
+    adblock:
+        container_name: adblock
+        hostname: black
+        restart: unless-stopped
+        image: pihole/pihole
+        environment:
+            - "TZ=Europe/Dublin"
+            - "DNS1=1.1.1.1"
+            - "DNS2=1.0.0.1"
+        ports:
+            - "53:53/tcp"
+            - "53:53/udp"
+            - "80:80/tcp"
+        dns:
+            - 127.0.0.1
+            - 1.1.1.1
+
+    # Simple GIT server
+    stagit:
+        container_name: stagit
+        hostname: unbearable
+        restart: unless-stopped
+        image: local-mine/stagit
+        ports:
+            - "21:21/tcp"
+            - "80:80/tcp"
+
+    # Murmur voip server
+    murmur:
+        container_name: murmur
+        hostname: murmuring
+        restart: unless-stopped
+        image: phlak/mumble
+        volumes:
+            - "your_config_path:/etc/mumble/config.ini"
+            - "your_ssl_path:/etc/ssl"
+        ports:
+            - "64738:64738/udp"
+            - "64738:64738/tcp"
+
+    # Mednafen multiplay server
+    mednafen:
+        container_name: mednafen
+        hostname: gamy
+        restart: unless-stopped
+        build: ./build/mednafen
+        image: local/mednafen
+        ports:
+                - "4046:4046/tcp"
+
+    # SSHD for reverse tunnels
+    sshd:
+        container_name: sshd
+        hostname: essehodie
+        restart: unless-stopped
+        build:
+            context: ./build/sshd
+            args:
+                - USER=your_user
+                - PASSWORD=your_password
+        image: local/sshd
+        ports:
+            - "2222:22/tcp"
+
+    # Simple HTTP streaming service
+    rtmp:
+        container_name: rtmp
+        hostname: streamy
+        restart: unless-stopped
+        image: alqutami/rtmp-hls:latest-alpine
+        ports:
+            - "1935:1935/tcp"
+
+    # IRC server
+    oragono:
+        container_name: oragono
+        hostname: oregano
+        restart: unless-stopped
+        image: oragono/oragono
+        volumes:
+            - "your_config_path/ircd.yaml:/ircd/ircd.yaml"
+            - "your_config_path/mine.motd:/ircd/mine.motd"
+            - "your_ssl_path:/etc/ssl"
+        ports:
+            - "6667:6667/tcp"
+            - "6697:6697/tcp"
+
+    # Content delivery through HTTP
+    content:
+        container_name: content
+        hostname: newspeak
+        restart: unless-stopped
+        build: /data/docker/web-server/content
+        image: local/content
+        volumes:
+            - "your_ssl_path:/etc/ssl"
+            - "your_content_path:/web"
+        ports:
+            - "443:443/tcp"
+
+    # HTTP redirect
+    redirect:
+        container_name: redirect
+        hostname: grandline
+        restart: unless-stopped
+        build: ./build/web-server/redirect
+        image: local/redirect
+        ports:
+            - "80:80/tcp"
+
+    audio-api:
+        container_name: audio-api
+        hostname: music
+        restart: unless-stopped
+        build: ./build/web-server/audio-server-api
+        image: local/audio-api
+        volumes:
+            - "your_config_path/config.json:/web/config.json"
+            - "your_data_path:/music"
+            - "your_ssl_path:/etc/ssl"
+        ports:
+            - "444:444/tcp"
+
+    # My audio frontend
+    audio-application:
+        container_name: audio-application
+        hostname: frame
+        restart: unless-stopped
+        build: ./build/web-server/audio-server-application
+        image: local/audio-applicaiton
+        volumes:
+            - "your_config_path/config.js:/web/config/config.js"
+            - "your_ssl_path:/etc/ssl"
+        ports:
+            - "443:443/tcp"
+
+    # SFTP server for file upload
+    upload:
+        container_name: upload
+        hostname: abissu
+        restart: unless-stopped
+        image: atmoz/sftp
+        command: "user::1000:1000:upload"
+        volumes:
+            - "your_key_path/user.pub:/home/user/.ssh/keys/id_rsa.pub:ro"
+            - "your_upload_path:/home/user/upload"
+        ports:
+            - "22:22/tcp"
+
