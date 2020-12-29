@@ -187,7 +187,7 @@ services:
         build: ./build/web-server/audio-server-application
         image: local/audio-applicaiton
         volumes:
-            - "your_config_path/config.js:/web/config/config.js"
+            - "your_config_path/config.js:/web/js/config.js"
             - "your_ssl_path:/etc/ssl"
         ports:
             - "443:443/tcp"
