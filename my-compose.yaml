@@ -83,16 +83,6 @@ services:
             - 127.0.0.1
             - 1.1.1.1
 
-    # Simple GIT server
-    stagit:
-        container_name: stagit
-        hostname: unbearable
-        restart: unless-stopped
-        image: local-mine/stagit
-        ports:
-            - "21:21/tcp"
-            - "80:80/tcp"
-
     # Murmur voip server
     murmur:
         container_name: murmur
