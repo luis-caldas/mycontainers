@@ -4,7 +4,7 @@ Collection of containers in `docker-compose` format and also `Dockerfiles`
 
 #### `all-compose.yaml`
 
-YAML file containing the instructions to build and run any container in this repository
+YAML file containing the instructions to build and run the containers
 
 #### Folders
 
