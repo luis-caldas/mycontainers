@@ -20,7 +20,7 @@ services:
         container_name: udns
         hostname: denial
         restart: unless-stopped
-        build: ./build/dns
+        build: ./build/update-dns
         image: local/dns
         environment:
             - KEY=your_freedns_key
