@@ -13,12 +13,15 @@ RUN apk add --update \
 # Install asterisk from the apk
 RUN apk add --update \
     asterisk \
-    asterisk-sample-config \
     asterisk-sounds-en \
     asterisk-sounds-moh
 
 # Install googletts and fix its permission
 COPY googletts.agi /var/lib/asterisk/agi-bin/googletts.agi
+
+# Install my configuration files
+COPY app/conf /etc/asterisk
+COPY app/phoneprov /var/lib/asterisk/phoneprov
 
 # Initialize it
 CMD ["asterisk", "-T", "-p", "-vvv", "-ddd", "-f"]

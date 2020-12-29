@@ -1,0 +1,3024 @@
+[intro]
+    alignment = center
+    greeting => Welcome to the
+    greeting => Asterisk
+    greeting => Open Source PBX
+[general]
+[general]
+    timestampformat = %a %b %d, %Y @ %H:%M:%S %Z
+    eventspooldir = /tmp
+    logindividualevents = no
+    fdtimeout = 2000
+    sdtimeout = 200
+    answait = 1250
+    loudness = 8192
+[general]
+    autoanswer=yes
+    context=local
+    extension=s
+[general]
+    total_analysis_time = 5000	; Maximum time allowed for the algorithm to decide
+    silence_threshold = 256		; If the average level of noise in a sample does not reach
+    initial_silence = 2500		; Maximum silence duration before the greeting.
+    after_greeting_silence = 800	; Silence after detecting a greeting.
+    greeting = 1500			; Maximum length of a greeting. If exceeded, then the
+    min_word_length = 100		; Minimum duration of Voice to considered as a word
+    maximum_word_length = 5000  	; Maximum duration of a single Voice utterance allowed.
+    between_words_silence = 50	; Minimum duration of silence after a word to consider
+    maximum_number_of_words = 2	; Maximum number of words in the greeting
+[general]
+    nullvalue = nullstring
+    autoclear=yes
+[general]
+    games=3
+    cheat=no
+
+[sounds]
+    prompt=please-enter-your,number,queue-less-than
+    wrong_guess=vm-pls-try-again
+    right_guess=auth-thankyou
+    too_high=high
+    too_low=low
+    lose=vm-goodbye
+
+[easy]
+    max_number=10
+    max_guesses=4
+
+[medium]
+    max_number=100
+    max_guesses=6
+
+[hard]
+    max_number=1000
+    max_guesses=7
+
+[nightmare]
+    max_number=1000
+    max_guesses=1
+[general]
+    enabled = yes       ; When set to no, ARI support is disabled.
+    #
+    # This file is used by the Asterisk debug tools.
+    # Unlike other Asterisk config files, this one is
+    # "sourced" by bash and must adhere to bash semantics.
+    #
+    # A list of coredumps and/or coredump search patterns.
+    # Bash extended globs are enabled and any resulting files
+    # that aren't actually coredumps are silently ignored
+    # so you can be liberal with the globs.
+    #
+    # If your patterns contains spaces be sure to only quote
+    # the portion of the pattern that DOESN'T contain wildcard
+    # expressions.  If you quote the whole pattern, it won't
+    # be expanded and the glob characters will be treated as
+    # literals.
+    #
+    # The exclusion of files ending ".txt" is just for
+    # demonstration purposes as non-coredumps will be ignored
+    # anyway.
+    COREDUMPS=(/tmp/core[-._]asterisk!(*.txt) /tmp/core[-._]$(hostname)!(*.txt))
+    # The directory to contain output files and work directories.
+    # For output from existing core files, the default is the
+    # directory that the core file is found in.  For core files
+    # produced from a running process, the default is /tmp.
+    OUTPUTDIR=/tmp
+    # Date command for the "running" coredump and tarballs.
+    # DATEFORMAT will be executed to get the timestamp.
+    # Don't put quotes around the format string or they'll be
+    # treated as literal characters.  Also be aware of colons
+    # in the output as you can't upload files with colons in
+    # the name to Jira.
+    #
+    # Unix timestamp
+    #DATEFORMAT='date +%s.%N'
+    #
+    # Unix timestamp on *BSD/MacOS after installing coreutils
+    #DATEFORMAT='gdate +%s.%N'
+    #
+    # Readable GMT
+    #DATEFORMAT='date -u +%FT%H-%M-%S%z'
+    #
+    # Readable Local time
+    DATEFORMAT='date +%FT%H-%M-%S%z'
+    # A list of log files and/or log file search patterns using the
+    # same syntax as COREDUMPS.
+    #
+    LOGFILES=(/var/log/asterisk/messages* /var/log/asterisk/queue* \
+    	/var/log/asterisk/debug* /var/log/asterisk/security*)
+    # ast_loggrabber converts POSIX timestamps to readable format
+    # using this Python strftime format string.  If not specified
+    # or an empty string, no format covnersion is done.
+    LOG_DATEFORMAT="%m/%d-%H:%M:%S.%f"
+    # The timezone to use when converting POSIX timestamps to
+    # readable format.  It can be specified in "<continent>/<city>"
+    # format or in abbreviation format such as "CST6CDT".  If not
+    # specified, the "local" timezone is used.
+    # LOG_TIMEZONE=
+[directories](!)
+    astetcdir => /etc/asterisk
+    astmoddir => /usr/lib/asterisk/modules
+    astvarlibdir => /var/lib/asterisk
+    astdbdir => /var/lib/asterisk
+    astkeydir => /var/lib/asterisk
+    astdatadir => /var/lib/asterisk
+    astagidir => /var/lib/asterisk/agi-bin
+    astspooldir => /var/spool/asterisk
+    astrundir => /var/run/asterisk
+    astlogdir => /var/log/asterisk
+    astsbindir => /usr/sbin
+
+[options]
+    documentation_language = en_US	; Set the language you want documentation
+[general]
+[general]
+[general]
+
+[csv]
+    usegmtime=yes    ; log date/time in GMT.  Default is "no"
+    loguniqueid=yes  ; log uniqueid.  Default is "no"
+    loguserfield=yes ; log user field.  Default is "no"
+    accountlogs=yes  ; create separate log file for each account code. Default is "yes"
+[general]
+    enabled = no
+[columns]
+    alias start => calldate
+[global]
+[master] ; currently, only file "master.db" is supported, with only one table at a time.
+[general]
+[general]
+[general]
+    apps=dial,park
+    events=APP_START,CHAN_START,CHAN_END,ANSWER,HANGUP,BRIDGE_ENTER,BRIDGE_EXIT
+
+[manager]
+
+[radius]
+[mappings]
+[general]
+[global]
+[trunkgroups]
+
+[channels]
+    context=public
+    usecallerid=yes
+    callwaiting=yes
+    usecallingpres=yes
+    callwaitingcallerid=yes
+    threewaycalling=yes
+    transfer=yes
+    canpark=yes
+    cancallforward=yes
+    callreturn=yes
+    echocancel=yes
+    echocancelwhenbridged=yes
+    group=1
+    callgroup=1
+    pickupgroup=1
+[general]
+    interval=30		; Number of seconds between trying to connect to devices.
+
+[adapter]
+    id=blue
+    address=00:09:DD:60:01:A3
+
+[adapter]
+    id=dlink
+    address=00:80:C8:35:52:78
+
+[LGTU550]
+    address=00:E0:91:7F:46:44	; the address of the phone
+    port=4				; the rfcomm port number (from mobile search)
+    context=incoming-mobile		; dialplan context for incoming calls
+    adapter=dlink			; adapter to use
+    group=1				; this phone is in channel group 1
+
+[blackberry]
+    address=00:60:57:32:7E:B2
+    port=2
+    context=incoming-mobile
+    adapter=dlink
+    group=1
+
+[6310i]
+    address=00:60:57:32:7E:B1
+    port=13
+    context=incoming-mobile
+    adapter=dlink
+    group=1				; this phone is in channel group 1 also.
+
+[headset]
+    address=00:0B:9E:11:AE:C6
+    port=1
+    type=headset			; This is a headset, not a Phone !
+    adapter=blue
+
+[headset1]
+    address=00:0B:9E:11:74:A5
+    port=1
+    type=headset
+    adapter=dlink
+[general]
+    template = friendly		; By default, include friendly aliases
+
+[friendly]
+    hangup request=channel request hangup
+    originate=channel originate
+    help=core show help
+    pri intense debug span=pri set debug intense span
+    reload=module reload
+    pjsip reload=module reload res_pjsip.so res_pjsip_authenticator_digest.so res_pjsip_endpoint_identifier_ip.so res_pjsip_mwi.so res_pjsip_notify.so res_pjsip_outbound_publish.so res_pjsip_publish_asterisk.so res_pjsip_outbound_registration.so
+
+[asterisk_1dot2_tpl](!)
+    show channeltypes=core show channeltypes
+    show channeltype=core show channeltype
+    show manager command=manager show command
+    show manager commands=manager show commands
+    show manager connected=manager show connected
+    show manager eventq=manager show eventq
+    rtp no debug=rtp set debug off
+    rtp rtcp debug ip=rtcp debug ip
+    rtp rtcp debug=rtcp debug
+    rtp rtcp no debug=rtcp debug off
+    rtp rtcp stats=rtcp stats
+    rtp rtcp no stats=rtcp stats off
+    stun no debug=stun debug off
+    udptl no debug=udptl debug off
+    show image formats=core show image formats
+    show file formats=core show file formats
+    show applications=core show applications
+    show functions=core show functions
+    show switches=core show switches
+    show hints=core show hints
+    show globals=core show globals
+    show function=core show function
+    show application=core show application
+    set global=core set global
+    show dialplan=dialplan show
+    show codecs=core show codecs
+    show audio codecs=core show audio codecs
+    show video codecs=core show video codecs
+    show image codecs=core show image codecs
+    show codec=core show codec
+    moh classes show=moh show classes
+    moh files show=moh show files
+    agi no debug=agi debug off
+    show agi=agi show
+    dump agihtml=agi dumphtml
+    show features=feature show
+    show indications=indication show
+    answer=console answer
+    hangup=console hangup
+    flash=console flash
+    dial=console dial
+    mute=console mute
+    unmute=console unmute
+    transfer=console transfer
+    send text=console send text
+    autoanswer=console autoanswer
+    oss boost=console boost
+    console=console active
+    save dialplan=dialplan save
+    add extension=dialplan add extension
+    remove extension=dialplan remove extension
+    add ignorepat=dialplan add ignorepat
+    remove ignorepat=dialplan remove ignorepat
+    include context=dialplan add include
+    dont include=dialplan remove include
+    extensions reload=dialplan reload
+    show translation=core show translation
+    convert=file convert
+    show queue=queue show
+    add queue member=queue add member
+    remove queue member=queue remove member
+    ael no debug=ael nodebug
+    sip debug=sip set debug
+    sip no debug=sip set debug off
+    show voicemail users=voicemail show users
+    show voicemail zones=voicemail show zones
+    iax2 trunk debug=iax2 set debug trunk
+    iax2 jb debug=iax2 set debug jb
+    iax2 no debug=iax2 set debug off
+    iax2 no trunk debug=iax2 set debug trunk off
+    iax2 no jb debug=iax2 set debug jb off
+    show agents=agent show
+    show agents online=agent show online
+    show memory allocations=memory show allocations
+    show memory summary=memory show summary
+    show version=core show version
+    show version files=core show file version
+    show profile=core show profile
+    clear profile=core clear profile
+    soft hangup=channel request hangup
+
+[asterisk_1dot2](asterisk_1dot2_tpl)
+
+[asterisk_1dot4_tpl](!)
+    cdr status=cdr show status
+    rtp debug=rtp set debug on
+    rtcp debug=rtcp set debug on
+    rtcp stats=rtcp set stats on
+    stun debug=stun set debug on
+    udptl debug=udptl set debug on
+    core show globals=dialplan show globals
+    core set global=dialplan set global
+    core set chanvar=dialplan set chanvar
+    agi dumphtml=agi dump html
+    ael debug=ael set debug
+    funcdevstate list=devstate list
+    sip history=sip set history on
+    skinny debug=skinny set debug on
+    mgcp set debug=mgcp set debug on
+    abort shutdown=core abort shutdown
+    stop now=core stop now
+    stop gracefully=core stop gracefully
+    stop when convenient=core stop when convenient
+    restart now=core restart now
+    restart gracefully=core restart gracefully
+    restart when convenient=core restart when convenient
+    soft hangup=channel request hangup
+
+[asterisk_1dot4](asterisk_1dot4_tpl)
+
+[asterisk_11_tpl](!)
+    jabber list nodes=xmpp list nodes
+    jabber purge nodes=xmpp purge nodes
+    jabber delete node=xmpp delete node
+    jabber create collection=xmpp create collection
+    jabber create leaf=xmpp create leaf
+    jabber set debug=xmpp set debug
+    jabber show connections=xmpp show connections
+    jabber show buddies=xmpp show buddies
+    features reload=module reload features
+
+[asterisk_11](asterisk_11_tpl)
+[startup_commands]
+[general]
+    default_perm=permit	; To leave asterisk working as normal
+[speex]
+    quality => 3
+    complexity => 2
+    enhancement => true
+    vad => true
+    vbr => true
+    abr => 0
+    vbr_quality => 4
+    dtx => false
+    preprocess => false
+    pp_vad => false
+    pp_agc => false
+    pp_agc_level => 8000
+    pp_denoise => false
+    pp_dereverb => false
+    pp_dereverb_decay => 0.4
+    pp_dereverb_level => 0.3
+    experimental_rtcp_feedback => false
+
+[plc]
+    genericplc => true
+    genericplc_on_equal_codecs => false
+
+[silk8]
+    type=silk
+    samprate=8000
+    fec=true           ; turn on or off encoding with forward error correction.
+    packetloss_percentage=10   ; Estimated packet loss percentage in uplink direction.  This
+    maxbitrate=10000    ; Use the table below to make sure a useful bitrate is choosen
+
+[silk12]
+    type=silk
+    samprate=12000
+    maxbitrate=12000
+    fec=true
+    packetloss_percentage=10;
+
+[silk16]
+    type=silk
+    samprate=16000
+    maxbitrate=20000
+    fec=true
+    packetloss_percentage=10;
+
+[silk24]
+    type=silk
+    samprate=24000
+    maxbitrate=30000
+    fec=true
+    packetloss_percentage=10;
+    cat ../../docs/*conf
+[general]
+
+[default_user]
+    type=user
+
+[default_bridge]
+    type=bridge
+
+[sample_user_menu]
+    type=menu
+    *=playback_and_continue(conf-usermenu)
+    *1=toggle_mute
+    1=toggle_mute
+    *4=decrease_listening_volume
+    4=decrease_listening_volume
+    *6=increase_listening_volume
+    6=increase_listening_volume
+    *7=decrease_talking_volume
+    7=decrease_talking_volume
+    *8=leave_conference
+    8=leave_conference
+    *9=increase_talking_volume
+    9=increase_talking_volume
+
+[sample_admin_menu]
+    type=menu
+    *=playback_and_continue(conf-adminmenu)
+    *1=toggle_mute
+    1=toggle_mute
+    *2=admin_toggle_conference_lock ; only applied to admin users
+    2=admin_toggle_conference_lock  ; only applied to admin users
+    *3=admin_kick_last       ; only applied to admin users
+    3=admin_kick_last        ; only applied to admin users
+    *4=decrease_listening_volume
+    4=decrease_listening_volume
+    *6=increase_listening_volume
+    6=increase_listening_volume
+    *7=decrease_talking_volume
+    7=decrease_talking_volume
+    *8=no_op
+    8=no_op
+    *9=increase_talking_volume
+    9=increase_talking_volume
+[global]
+    intopt=-1
+    uintopt=1
+    timelenopt1=1ms
+    timelenopt2=1s
+    timelenopt3=1m
+    timelenopt4=1h
+    doubleopt=0.1
+    sockaddropt=1.2.3.4:1234
+    boolopt=true
+    boolflag1=true
+    boolflag2=false
+    boolflag3=true
+    deny=0.0.0.0/0
+    permit=1.2.3.4/32
+    codecopt=!all,ulaw,g729
+    stropt=test
+    customopt=yes
+
+[global_defaults]
+
+[item]
+    intopt=-1
+    uintopt=1
+    timelenopt1=1
+    timelenopt2=1
+    timelenopt3=1
+    timelenopt4=1
+    doubleopt=0.1
+    sockaddropt=1.2.3.4:1234
+    boolopt=true
+    boolflag1=true
+    boolflag2=false
+    boolflag3=true
+    acldenyopt=0.0.0.0/0
+    aclpermitopt=1.2.3.4/32
+    codecopt=!all,ulaw,g729
+    stropt=test
+    customopt=yes
+
+[item_defaults]
+[general]
+
+[default]
+    input_device = default       ; When configuring an input device and output device,
+    output_device = default      ; use the name that you see when you run the "console
+    autoanswer = no
+    context = default
+    extension = s
+    callerid = MyName Here <(256) 428-6000>
+    language = en
+    overridecontext = no
+    mohinterpret = default
+    active = yes                 ; This option should only be set for one console.
+    #
+    # Configuration file for dbsep.cgi
+    #
+    # The purpose of this file is to provide realtime access to a database,
+    # possibly through ODBC, without needing to load the ODBC drivers into
+    # Asterisk, since there are several backend drivers which are rather
+    # buggy.
+    #
+    # We accomplish this separation by using the res_config_curl realtime
+    # driver to connect to a server running dbsep.cgi (or another, which
+    # implements the same protocol).
+    #
+    # This file contains the information necessary to configure dbsep.cgi.
+    #
+    #
+    # Once installed to a web server, you'll need to preload func_curl.so
+    # and res_config_curl.so in modules.conf and configure extconfig.conf:
+    #
+    # voicemail => curl,http://server/path/to/dbsep.cgi/voicemail
+    # sippeers => curl,http://server/path/to/dbsep.cgi/sippeers
+    #
+    # The Data Source Name, as specified by the Perl DBI module.
+    # Typically, this will be along the lines of 'DBI:mysql:astdbname[:dbhostname]' or 'DBI:Pg:dbname=astdbname;hostname=dbhostname'
+    dsn=somedsn
+    # Connected database user
+    dbuser=someuser
+    # And its password
+    dbpass=password
+    # For most databases, this is fine.  Set to 'no' for Sybase or MS SQL Server.
+    backslash_is_escape=yes
+[general]
+[default]
+[general]
+    ttl=32
+    autokill=yes
+
+[mappings]
+[general]
+    search => e164.arpa
+    h323driver => H323
+[settings]
+[general]
+    static=yes
+    writeprotect=no
+    clearglobalvars=no
+
+[globals]
+    CONSOLE=Console/dsp				; Console interface for demo
+    IAXINFO=guest					; IAXtel username/password
+    TRUNK=DAHDI/G2					; Trunk interface
+    TRUNKMSD=1					; MSD digits to strip (usually 1 or 0)
+
+[dundi-e164-canonical]
+
+[dundi-e164-customers]
+
+[dundi-e164-via-pstn]
+
+[dundi-e164-local]
+    include => dundi-e164-canonical
+    include => dundi-e164-customers
+    include => dundi-e164-via-pstn
+
+[dundi-e164-switch]
+    switch => DUNDi/e164
+
+[dundi-e164-lookup]
+    include => dundi-e164-local
+    include => dundi-e164-switch
+
+[macro-dundi-e164]
+    exten => s,1,Goto(${ARG1},1)
+    include => dundi-e164-lookup
+
+[iaxtel700]
+    exten => _91700XXXXXXX,1,Dial(IAX2/${GLOBAL(IAXINFO)}@iaxtel.com/${EXTEN:1}@iaxtel)
+
+[iaxprovider]
+
+[trunkint]
+    exten => _9011.,1,Macro(dundi-e164,${EXTEN:4})
+    exten => _9011.,n,Dial(${GLOBAL(TRUNK)}/${FILTER(0-9,${EXTEN:${GLOBAL(TRUNKMSD)}})})
+
+[trunkld]
+    exten => _91NXXNXXXXXX,1,Macro(dundi-e164,${EXTEN:1})
+    exten => _91NXXNXXXXXX,n,Dial(${GLOBAL(TRUNK)}/${EXTEN:${GLOBAL(TRUNKMSD)}})
+
+[trunklocal]
+    exten => _9NXXXXXX,1,Dial(${GLOBAL(TRUNK)}/${EXTEN:${GLOBAL(TRUNKMSD)}})
+
+[trunktollfree]
+    exten => _91800NXXXXXX,1,Dial(${GLOBAL(TRUNK)}/${EXTEN:${GLOBAL(TRUNKMSD)}})
+    exten => _91888NXXXXXX,1,Dial(${GLOBAL(TRUNK)}/${EXTEN:${GLOBAL(TRUNKMSD)}})
+    exten => _91877NXXXXXX,1,Dial(${GLOBAL(TRUNK)}/${EXTEN:${GLOBAL(TRUNKMSD)}})
+    exten => _91866NXXXXXX,1,Dial(${GLOBAL(TRUNK)}/${EXTEN:${GLOBAL(TRUNKMSD)}})
+
+[international]
+    ignorepat => 9
+    include => longdistance
+    include => trunkint
+
+[longdistance]
+    ignorepat => 9
+    include => local
+    include => trunkld
+
+[local]
+    ignorepat => 9
+    include => default
+    include => trunklocal
+    include => iaxtel700
+    include => trunktollfree
+    include => iaxprovider
+    include => parkedcalls
+
+[outbound-freenum]
+    exten => _X*X!,1,Goto(outbound-freenum2,${EXTEN},1)
+    exten => _XX*X!,1,Goto(outbound-freenum2,${EXTEN},1)
+    exten => _XXX*X!,1,Goto(outbound-freenum2,${EXTEN},1)
+    exten => _XXXX*X!,1,Goto(outbound-freenum2,${EXTEN},1)
+    exten => _XXXXX*X!,1,Goto(outbound-freenum2,${EXTEN},1)
+    exten => _XXXXXX*X!,1,Goto(outbound-freenum2,${EXTEN},1)
+
+[outbound-freenum2]
+    exten => _X!,1,Verbose(2,Performing ISN lookup for ${EXTEN})
+    same => n,Set(SUFFIX=${CUT(EXTEN,*,2-)})                                ; make sure the suffix is all digits as well
+    same => n,GotoIf($["${FILTER(0-9,${SUFFIX})}" != "${SUFFIX}"]?fn-CONGESTION,1)
+    same => n,Set(TIMEOUT(absolute)=10800)
+    same => n,Set(isnresult=${ENUMLOOKUP(${EXTEN},sip,,1,freenum.org)})     ; perform our lookup with freenum.org
+    same => n,GotoIf($["${isnresult}" != ""]?from)
+    same => n,Set(DIALSTATUS=CONGESTION)
+    same => n,Goto(fn-CONGESTION,1)
+    same => n(from),Set(__SIPFROMUSER=${CALLERID(num)})
+    same => n,GotoIf($["${GLOBAL(FREENUMDOMAIN)}" = ""]?dial)               ; check if we set the FREENUMDOMAIN global variable in [global]
+    same => n,Set(__SIPFROMDOMAIN=${GLOBAL(FREENUMDOMAIN)})                 ;    if we did set it, then we'll use it for our outbound dialing domain
+    same => n(dial),Dial(SIP/${isnresult},40)
+    same => n,Goto(fn-${DIALSTATUS},1)
+    exten => fn-BUSY,1,Busy()
+    exten => _f[n]-.,1,NoOp(ISN: ${DIALSTATUS})
+    same => n,Congestion()
+
+[macro-trunkdial]
+    exten => s,1,Dial(${ARG1})
+    exten => s,n,Goto(s-${DIALSTATUS},1)
+    exten => s-NOANSWER,1,Hangup()
+    exten => s-BUSY,1,Hangup()
+    exten => _s-.,1,NoOp
+
+[stdexten]
+    exten => _X.,50000(stdexten),NoOp(Start stdexten)
+    exten => _X.,n,Set(LOCAL(ext)=${EXTEN})
+    exten => _X.,n,Set(LOCAL(dev)=${ARG1})
+    exten => _X.,n,Set(LOCAL(cntx)=${ARG2})
+    exten => _X.,n,Set(LOCAL(mbx)=${ext}${IF($[!${ISNULL(${cntx})}]?@${cntx})})
+    exten => _X.,n,Dial(${dev},20)				; Ring the interface, 20 seconds maximum
+    exten => _X.,n,Goto(stdexten-${DIALSTATUS},1)		; Jump based on status (NOANSWER,BUSY,CHANUNAVAIL,CONGESTION,ANSWER)
+    exten => stdexten-NOANSWER,1,VoiceMail(${mbx},u)	; If unavailable, send to voicemail w/ unavail announce
+    exten => stdexten-NOANSWER,n,Return()			; If they press #, return to start
+    exten => stdexten-BUSY,1,VoiceMail(${mbx},b)		; If busy, send to voicemail w/ busy announce
+    exten => stdexten-BUSY,n,Return()			; If they press #, return to start
+    exten => _stde[x]te[n]-.,1,Goto(stdexten-NOANSWER,1)	; Treat anything else as no answer
+    exten => a,1,VoiceMailMain(${mbx})			; If they press *, send the user into VoicemailMain
+    exten => a,n,Return()
+
+[stdPrivacyexten]
+    exten => _X.,60000(stdPrivacyexten),NoOp(Start stdPrivacyexten)
+    exten => _X.,n,Set(LOCAL(ext)=${ARG1})
+    exten => _X.,n,Set(LOCAL(dev)=${ARG2})
+    exten => _X.,n,Set(LOCAL(dontcntx)=${ARG3})
+    exten => _X.,n,Set(LOCAL(tortcntx)=${ARG4})
+    exten => _X.,n,Set(LOCAL(cntx)=${ARG5})
+    exten => _X.,n,Set(LOCAL(mbx)="${ext}"$["${cntx}" ? "@${cntx}" :: ""])
+    exten => _X.,n,Dial(${dev},20,p)			; Ring the interface, 20 seconds maximum, call screening
+    exten => _X.,n,Goto(stdexten-${DIALSTATUS},1)		; Jump based on status (NOANSWER,BUSY,CHANUNAVAIL,CONGESTION,ANSWER)
+    exten => stdexten-NOANSWER,1,VoiceMail(${mbx},u)	; If unavailable, send to voicemail w/ unavail announce
+    exten => stdexten-NOANSWER,n,NoOp(Finish stdPrivacyexten NOANSWER)
+    exten => stdexten-NOANSWER,n,Return()			; If they press #, return to start
+    exten => stdexten-BUSY,1,VoiceMail(${mbx},b)		; If busy, send to voicemail w/ busy announce
+    exten => stdexten-BUSY,n,NoOp(Finish stdPrivacyexten BUSY)
+    exten => stdexten-BUSY,n,Return()			; If they press #, return to start
+    exten => stdexten-DONTCALL,1,Goto(${dontcntx},s,1)	; Callee chose to send this call to a polite "Don't call again" script.
+    exten => stdexten-TORTURE,1,Goto(${tortcntx},s,1)	; Callee chose to send this call to a telemarketer torture script.
+    exten => _stde[x]te[n]-.,1,Goto(stdexten-NOANSWER,1)	; Treat anything else as no answer
+    exten => a,1,VoiceMailMain(${mbx})		; If they press *, send the user into VoicemailMain
+    exten => a,n,Return()
+
+[macro-page]
+    exten => s,1,ChanIsAvail(${ARG1},s)			; s is for ANY call
+    exten => s,n,GotoIf($[${AVAILSTATUS} = "1"]?autoanswer:fail)
+    exten => s,n(autoanswer),Set(_ALERT_INFO="RA")			; This is for the PolyComs
+    exten => s,n,SIPAddHeader(Call-Info: Answer-After=0)	; This is for the Grandstream, Snoms, and Others
+    exten => s,n,NoOp()					; Add others here and Post on the Wiki!!!!
+    exten => s,n,Dial(${ARG1})
+    exten => s,n(fail),Hangup()
+
+[demo]
+    include => stdexten
+    exten => s,1,Wait(1)			; Wait a second, just for fun
+    exten => s,n,Answer()			; Answer the line
+    exten => s,n,Set(TIMEOUT(digit)=5)	; Set Digit Timeout to 5 seconds
+    exten => s,n,Set(TIMEOUT(response)=10)	; Set Response Timeout to 10 seconds
+    exten => s,n(restart),BackGround(demo-congrats)	; Play a congratulatory message
+    exten => s,n(instruct),BackGround(demo-instruct)	; Play some instructions
+    exten => s,n,WaitExten()		; Wait for an extension to be dialed.
+    exten => 2,1,BackGround(demo-moreinfo)	; Give some more information.
+    exten => 2,n,Goto(s,instruct)
+    exten => 3,1,Set(CHANNEL(language)=fr)		; Set language to french
+    exten => 3,n,Goto(s,restart)		; Start with the congratulations
+    exten => 1000,1,Goto(default,s,1)
+    exten => 1234,1,Playback(transfer,skip)		; "Please hold while..."
+    exten => 1234,n,Gosub(${EXTEN},stdexten(${GLOBAL(CONSOLE)}))
+    exten => 1234,n,Goto(default,s,1)		; exited Voicemail
+    exten => 1235,1,VoiceMail(1234,u)		; Right to voicemail
+    exten => 1236,1,Dial(Console/dsp)		; Ring forever
+    exten => 1236,n,VoiceMail(1234,b)		; Unless busy
+    exten => #,1,Playback(demo-thanks)	; "Thanks for trying the demo"
+    exten => #,n,Hangup()			; Hang them up.
+    exten => t,1,Goto(#,1)			; If they take too long, give up
+    exten => i,1,Playback(invalid)		; "That's not valid, try again"
+    exten => 500,1,Playback(demo-abouttotry)	; Let them know what's going on
+    exten => 500,n,Dial(IAX2/guest@pbx.digium.com/s@default)	; Call the Asterisk demo
+    exten => 500,n,Playback(demo-nogo)	; Couldn't connect to the demo site
+    exten => 500,n,Goto(s,6)		; Return to the start over message.
+    exten => 600,1,Playback(demo-echotest)	; Let them know what's going on
+    exten => 600,n,Echo()			; Do the echo test
+    exten => 600,n,Playback(demo-echodone)	; Let them know it's over
+    exten => 600,n,Goto(s,6)		; Start over
+    exten => 76245,1,Macro(page,SIP/Grandstream1)
+    exten => _7XXX,1,Macro(page,SIP/${EXTEN})
+    exten => 7999,1,Set(TIMEOUT(absolute)=60)
+    exten => 7999,2,Page(Local/Grandstream1@page&Local/Xlite1@page&Local/1234@page/n,d)
+    exten => 8500,1,VoiceMailMain()
+    exten => 8500,n,Goto(s,6)
+
+[page]
+    exten => _X.,1,Macro(page,SIP/${EXTEN})
+
+[public]
+    include => demo
+
+[default]
+    include => demo
+
+[time]
+    exten => _X.,30000(time),NoOp(Time: ${EXTEN} ${timezone})
+    exten => _X.,n,Wait(0.25)
+    exten => _X.,n,Answer()
+    exten => _X.,n,Set(FUTURETIME=$[${EPOCH} + 12])
+    exten => _X.,n,SayUnixTime(${FUTURETIME},Zulu,HNS)
+    exten => _X.,n,SayPhonetic(z)
+    exten => _X.,n,SayUnixTime(${FUTURETIME},${timezone},HNS)
+    exten => _X.,n,Playback(spy-local)
+    exten => _X.,n,WaitUntil(${FUTURETIME})
+    exten => _X.,n,Playback(beep)
+    exten => _X.,n,Return()
+
+[ani]
+    exten => _X.,40000(ani),NoOp(ANI: ${EXTEN})
+    exten => _X.,n,Wait(0.25)
+    exten => _X.,n,Answer()
+    exten => _X.,n,Playback(vm-from)
+    exten => _X.,n,SayDigits(${CALLERID(ani)})
+    exten => _X.,n,Wait(1.25)
+    exten => _X.,n,SayDigits(${CALLERID(ani)})	; playback again in case of missed digit
+    exten => _X.,n,Return()
+[macro-minivmfunctest]
+    exten => s,1,set(account=${ARGV1})
+    exten => minivm,n,verbose(1,-------------------- Minivm Function test - Accoutn ${account}  -------------)
+    exten => s,n,verbose(1,---- Has account:       ${MINIVMACCOUNT(${account}:hasaccount)})
+    exten => s,n,verbose(1,---- Fullname:          ${MINIVMACCOUNT(${account}:fullname)})
+    exten => s,n,verbose(1,---- Email:             ${MINIVMACCOUNT(${account}:email)})
+    exten => s,n,verbose(1,---- Pager:             ${MINIVMACCOUNT(${account}:pager)})
+    exten => s,n,verbose(1,---- E-mail template:   ${MINIVMACCOUNT(${account}:etemplate)})
+    exten => s,n,verbose(1,---- Pager template:    ${MINIVMACCOUNT(${account}:ptemplate)})
+    exten => s,n,verbose(1,---- Account code:      ${MINIVMACCOUNT(${account}:accountcode)})
+    exten => s,n,verbose(1,---- Path:              ${MINIVMACCOUNT(${account}:path)})
+    exten => s,n,verbose(1,---- Pincode:           ${MINIVMACCOUNT(${account}:pincode)})
+    exten => s,n,verbose(1,---- Time zone:         ${MINIVMACCOUNT(${account}:timezone)})
+    exten => s,n,verbose(1,---- Language:          ${MINIVMACCOUNT(${account}:language)})
+    exten => s,n,verbose(1,---- Var:customerclass: ${MINIVMACCOUNT(${account}:customerclass)})
+
+[minivm-scenario1]
+    exten => minivmtest,1,answer
+    exten => minivmtest,n,wait(0.5)
+    exten => minivmtest,n,set(ACCOUNT=do-not-spam-me@example.com)
+    exten => minivmtest,n,macro(minivmfunctest, ${ACCOUNT})
+    exten => minivmtest,n,playback(beep)
+    exten => minivmtest,n,hangup
+    exten => minivm,1,answer
+    exten => minivm,n,wait(0.5)	; Wait for Voip channels to settle
+    exten => minivm,n,set(account=oej@example.com)
+    exten => minivm,n,noop(------------------------------------------- Minivm Greet   -------------)
+    exten => minivm,n,minivmgreet(${account})
+    exten => minivm,n,verbose(1,-- MINIVM_GREET_STATUS = ${MINIVM_GREET_STATUS} )
+    exten => minivm,n,noop(------------------------------------------- Minivm Record  -------------)
+    exten => minivm,n,minivmRecord(${account},b)
+    exten => minivm,n,goto(minivmcleanup,1)
+    exten => minivmcleanup,1,noop(------------------------------------------- Minivm Notify  -------------)
+    exten => minivmcleanup,n,gotoif($[${MINIVM_RECORD_STATUS} != SUCCESS]?minivmrecordfailure,1)
+    exten => minivmcleanup,n,set(MINIVMCOUNTER(${account}:voicemailcounter:inc)=1)
+    exten => minivmcleanup,n,set(MVM_COUNTER = ${MINIVMCOUNTER(${account}:voicemailcounter)})
+    exten => minivmcleanup,n,minivmNotify(${account})
+    exten => minivmcleanup,n,verbose(1,-- MINIVM_NOTIFY_STATUS = ${MINIVM_NOTIFY_STATUS} )
+    exten => minivmcleanup,n,noop(------------------------------------------- Minivm Delete  -------------)
+    exten => minivmcleanup,n,minivmdelete()
+    exten => minivmcleanup,n,verbose(1,-- MINIVM_DELETE_STATUS = ${MINIVM_DELETE_STATUS} )
+    exten => minivmrecordfailure,1,playback(vm-sorry)
+    exten => minivmrecordfailure,n,wait(1)
+    exten => minivmrecordfailure,n,hangup
+    exten => h,1,gotoif($[x${MINIVM_DELETE_STATUS} != x] ?h,stop)
+    exten => h,n,noop(------------------------------------------- HANGUP during voicemail recording   -------------)
+    exten => h,n,goto(minivmcleanup,1)
+    exten => h,n(stop),noop(---Minivm DONE----)
+
+[macro-recordgreetings]
+    exten => s,1,answer
+    exten => s,n,wait(0.5)
+    exten => s,n,set(account=${ARGV1])
+    exten => s,n(menu),background(vm-options)
+    exten => 1,1,setvar(option=u)
+    exten => 1,n,macro(minivmrec,${account},${option})
+    exten => 1,n,goto(menu)
+    exten => 2,1,setvar(option=b)
+    exten => 2,n,macro(minivmrec,${account},${option})
+    exten => 2,n,goto(menu)
+    exten => 3,1,setvar(option=n)
+    exten => 3,n,macro(minivmrec,${account},${option})
+    exten => 3,n,goto(menu)
+    exten => 4,1,setvar(option=t)
+    exten => 4,n,macro(minivmrec,${account},${option})
+    exten => 4,n,goto(menu)
+    exten => *,1,playback(vm-thankyou)
+    exten => *,n,wait(1)
+    exten => *,n,hangup
+    exten => i,1,playback(invalid)
+    exten => i,n,goto(menu)
+
+[macro-minivmrec]
+    exten => s,1,gotoif(${MINIVMACCOUNT(${account}:hasaccount)}?record)
+    exten => s,n,playback(privacy-incorrect)
+    exten => s,n,macroreturn
+    exten => record,1,minivmappmess(${ARGV1},${ARGV2})
+    exten => record,n,noop(Recording status: ${MINIVM_APPMESS_STATUS})
+    exten => record,n,macroreturn
+    exten => sendvoicemail,1,answer
+    exten => sendvoicemail,n,wait(0.5)
+    exten => sendvoicemail,n,set(domain=${CUT(account,@,2)})
+    exten => sendvoicemail,n,set(country=${CUT(domain,.,2)})
+    exten => sendvoicemail,n,minivmgreet(${account})
+    exten => sendvoicemail,n,minivmRecord(${account},b)
+    exten => sendvoicemail,n,goto(sendvmcleanup)
+    exten => sendvmcleanup,1,gotoif($[${MINIVM_RECORD_STATUS} != SUCCESS]?done)
+    exten => sendvmcleanup,n,set(MINIVMCOUNTER(${account}:voicemailcounter:inc)=1)
+    exten => sendvmcleanup,n,set(MVM_COUNTER = ${MINIVMCOUNTER(${account}:voicemailcounter)})
+    exten => sendvmcleanup,n,set(MINIVMCOUNTER(${domain}:${domain}-all:inc) = 1)
+    exten => sendvmcleanup,n,minivmNotify(${account}, ${country}_email)
+    exten => sendvmcleanup,n,minivmDelete()
+    exten => sendvmcleanup,n(done),wait(0.5)
+    exten => sendvmcleanup,n,hangup
+    exten => h,1,gotoif($[${MINIVM_RECORD_STATUS} = SUCCESS]?sendvmcleanup,1))
+[general]
+
+[featuremap]
+
+[applicationmap]
+[general]
+[general]
+    featuredigittimeout=>5000
+    enable_callee_prompt=>true
+    takecall=>1
+    declinecall=>2
+    call_from_prompt=>followme/call-from
+    norecording_prompt=>followme/no-recording
+    options_prompt=>followme/options
+    pls_hold_prompt=>followme/pls-hold-while-try
+    status_prompt=>followme/status
+    sorry_prompt=>followme/sorry
+    connecting_prompt=>
+
+[default]
+    musicclass=>default
+    context=>default
+    number=>01233456,25
+    enable_callee_prompt=>true
+    takecall=>1
+    declinecall=>2
+    call_from_prompt=>followme/call-from
+    norecording_prompt=>followme/no-recording
+    options_prompt=>followme/options
+    pls_hold_prompt=>followme/pls-hold-while-try
+    status_prompt=>followme/status
+    sorry_prompt=>followme/sorry
+    connecting_prompt=>
+[general]
+
+[SQL]
+    dsn=mysql1
+    readsql=${ARG1}
+
+[ANTIGF]
+    dsn=mysql1,mysql2   ; Use mysql1 as the primary handle, but fall back to mysql2
+    readsql=SELECT COUNT(*) FROM exgirlfriends WHERE callerid='${SQL_ESC(${ARG1})}'
+    syntax=<callerid>
+    synopsis=Check if a specified callerid is contained in the ex-gf database
+
+[PRESENCE]
+    dsn=mysql1
+    readsql=SELECT location FROM presence WHERE id='${SQL_ESC(${ARG1})}'
+    writesql=UPDATE presence SET location='${SQL_ESC(${VAL1})}' WHERE id='${SQL_ESC(${ARG1})}'
+[general]
+    enabled = no                       ; Enable/disable forwarding of packets to a
+    capture_address = 192.168.1.1:9061 ; The address of the HEP capture server.
+    capture_password = foo             ; If specified, the authorization passsword
+    capture_id = 1234                  ; A unique integer identifier for this
+    uuid_type = call-id                ; Specify the preferred source for the Homer
+[general]
+    servername=Asterisk
+    bindaddr=127.0.0.1
+[general]
+    bandwidth=low
+    disallow=lpc10
+    jitterbuffer=no
+    autokill=yes
+
+[guest]
+    type=user
+    context=public
+    callerid="Guest IAX User"
+
+[iaxtel]
+    type=user
+    context=default
+    auth=rsa
+    inkeys=iaxtel
+
+[iaxfwd]
+    type=user
+    context=default
+    auth=rsa
+    inkeys=freeworlddialup
+[default]
+    codec=ulaw
+    flags=register,heartbeat
+[general]
+    country=us		; default location
+
+[at]
+    description = Austria
+    ringcadence = 1000,5000
+    dial = 420
+    busy = 420/400,0/400
+    ring = 420/1000,0/5000
+    congestion = 420/200,0/200
+    callwaiting = 420/40,0/1960
+    dialrecall = 420
+    record = 1400/80,0/14920
+    info = 950/330,1450/330,1850/330,0/1000
+    stutter = 380+420
+
+[au]
+    description = Australia
+    ringcadence = 400,200,400,2000
+    dial = 413+438
+    busy = 425/375,0/375
+    ring = 413+438/400,0/200,413+438/400,0/2000
+    congestion = 425/375,0/375,420/375,0/375
+    callwaiting = 425/200,0/200,425/200,0/4400
+    dialrecall = 413+438
+    record = !425/1000,!0/15000,425/360,0/15000
+    info = 425/2500,0/500
+    std = !525/100,!0/100,!525/100,!0/100,!525/100,!0/100,!525/100,!0/100,!525/100
+    facility = 425
+    stutter = 413+438/100,0/40
+    ringmobile = 400+450/400,0/200,400+450/400,0/2000
+
+[bg]
+    description = Bulgaria
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250
+    callwaiting = 425/150,0/150,425/150,0/4000
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/425,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425/1500,0/100
+
+[br]
+    description = Brazil
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/250,0/250
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250,425/750,0/250
+    callwaiting = 425/50,0/1000
+    dialrecall = 350+440
+    record = 425/250,0/250
+    info = 950/330,1400/330,1800/330
+    stutter = 350+440
+
+[be]
+    description = Belgium
+    ringcadence = 1000,3000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/3000
+    congestion = 425/167,0/167
+    callwaiting = 1400/175,0/175,1400/175,0/3500
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = 900/330,1400/330,1800/330,0/1000
+    stutter = 425/1000,0/250
+
+[ch]
+    description = Switzerland
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/200,0/200,425/200,0/4000
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/80,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425+340/1100,0/1100
+
+[cl]
+    description = Chile
+    ringcadence = 1000,3000
+    dial = 400
+    busy = 400/500,0/500
+    ring = 400/1000,0/3000
+    congestion = 400/200,0/200
+    callwaiting = 400/250,0/8750
+    dialrecall = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+    record = 1400/500,0/15000
+    info = 950/333,1400/333,1800/333,0/1000
+    stutter = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+
+[cn]
+    description = China
+    ringcadence = 1000,4000
+    dial = 450
+    busy = 450/350,0/350
+    ring = 450/1000,0/4000
+    congestion = 450/700,0/700
+    callwaiting = 450/400,0/4000
+    dialrecall = 450
+    record = 950/400,0/10000
+    info = 450/100,0/100,450/100,0/100,450/100,0/100,450/400,0/400
+    stutter = 450+425
+
+[cz]
+    description = Czech Republic
+    ringcadence = 1000,4000
+    dial = 425/330,0/330,425/660,0/660
+    busy = 425/330,0/330
+    ring = 425/1000,0/4000
+    congestion = 425/165,0/165
+    callwaiting = 425/330,0/9000
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425/330,0/330,425/660,0/660
+    record = 1400/500,0/14000
+    info = 950/330,0/30,1400/330,0/30,1800/330,0/1000
+    stutter = 425/450,0/50
+
+[de]
+    description = Germany
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/480,0/480
+    ring = 425/1000,0/4000
+    congestion = 425/240,0/240
+    callwaiting = !425/200,!0/200,!425/200,!0/5000,!425/200,!0/200,!425/200,!0/5000,!425/200,!0/200,!425/200,!0/5000,!425/200,!0/200,!425/200,!0/5000,!425/200,!0/200,!425/200,0
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/80,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425+400
+
+[dk]
+    description = Denmark
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = !425/200,!0/600,!425/200,!0/3000,!425/200,!0/200,!425/200,0
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/80,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425/450,0/50
+
+[ee]
+    description = Estonia
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/300,0/300
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 950/650,0/325,950/325,0/30,1400/1300,0/2600
+    dialrecall = 425/650,0/25
+    record = 1400/500,0/15000
+    info = 950/650,0/325,950/325,0/30,1400/1300,0/2600
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[es]
+    description = Spain
+    ringcadence = 1500,3000
+    dial = 425
+    busy = 425/200,0/200
+    ring = 425/1500,0/3000
+    congestion = 425/200,0/200,425/200,0/200,425/200,0/600
+    callwaiting = 425/175,0/175,425/175,0/3500
+    dialrecall = !425/200,!0/200,!425/200,!0/200,!425/200,!0/200,425
+    record = 1400/500,0/15000
+    info = 950/330,0/1000
+    dialout = 500
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[fi]
+    description = Finland
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/300,0/300
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/150,0/150,425/150,0/8000
+    dialrecall = 425/650,0/25
+    record = 1400/500,0/15000
+    info = 950/650,0/325,950/325,0/30,1400/1300,0/2600
+    stutter = 425/650,0/25
+
+[fr]
+    description = France
+    ringcadence = 1500,3500
+    dial = 440
+    busy = 440/500,0/500
+    ring = 440/1500,0/3500
+    congestion = 440/250,0/250
+    callwait = 440/300,0/10000
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330
+    stutter = !440/100,!0/100,!440/100,!0/100,!440/100,!0/100,!440/100,!0/100,!440/100,!0/100,!440/100,!0/100,440
+
+[gr]
+    description = Greece
+    ringcadence = 1000,4000
+    dial = 425/200,0/300,425/700,0/800
+    busy = 425/300,0/300
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/150,0/150,425/150,0/8000
+    dialrecall = 425/650,0/25
+    record = 1400/400,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = 425/650,0/25
+
+[hu]
+    description = Hungary
+    ringcadence = 1250,3750
+    dial = 425
+    busy = 425/300,0/300
+    ring = 425/1250,0/3750
+    congestion = 425/300,0/300
+    callwaiting = 425/40,0/1960
+    dialrecall = 425+450
+    record = 1400/400,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = 350+375+400
+
+[il]
+    description = Israel
+    ringcadence = 1000,3000
+    dial = 414
+    busy = 414/500,0/500
+    ring = 414/1000,0/3000
+    congestion = 414/250,0/250
+    callwaiting = 414/100,0/100,414/100,0/100,414/600,0/3000
+    dialrecall = !414/100,!0/100,!414/100,!0/100,!414/100,!0/100,414
+    record = 1400/500,0/15000
+    info = 1000/330,1400/330,1800/330,0/1000
+    stutter = !414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,414
+
+[in]
+    description = India
+    ringcadence = 400,200,400,2000
+    dial = 400*25
+    busy = 400/750,0/750
+    ring = 400*25/400,0/200,400*25/400,0/2000
+    congestion = 400/250,0/250
+    callwaiting = 400/200,0/100,400/200,0/7500
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0/1000
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,400*25
+
+[it]
+    description = Italy
+    ringcadence = 1000,4000
+    dial = 425/200,0/200,425/600,0/1000
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/400,0/100,425/250,0/100,425/150,0/14000
+    dialrecall = 470/400,425/400
+    record = 1400/400,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = 470/400,425/400
+
+[lt]
+    description = Lithuania
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/350,0/350
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/150,0/150,425/150,0/4000
+    dialrecall = 425/500,0/50
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[jp]
+    description = Japan
+    ringcadence = 1000,2000
+    dial = 400
+    busy = 400/500,0/500
+    ring = 400+15/1000,0/2000
+    congestion = 400/500,0/500
+    callwaiting = 400+16/500,0/8000
+    dialrecall = !400/200,!0/200,!400/200,!0/200,!400/200,!0/200,400
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+
+[mx]
+    description = Mexico
+    ringcadence = 2000,4000
+    dial = 425
+    busy = 425/250,0/250
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250
+    callwaiting = 425/200,0/600,425/200,0/10000
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = 950/330,0/30,1400/330,0/30,1800/330,0/1000
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,425
+
+[my]
+    description = Malaysia
+    ringcadence = 2000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/400,0/200,425/400,0/2000
+    congestion = 425/500,0/500
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[nl]
+    description = Netherlands
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250
+    callwaiting = 425/500,0/9500
+    dialrecall = 425/500,0/50
+    record = 1400/500,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425/500,0/50
+
+[no]
+    description = Norway
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/200,0/600,425/200,0/10000
+    dialrecall = 470/400,425/400
+    record = 1400/400,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = 470/400,425/400
+
+[nz]
+    description = New Zealand
+    ringcadence = 400,200,400,2000
+    dial = 400
+    busy = 400/500,0/500
+    ring = 400+450/400,0/200,400+450/400,0/2000
+    congestion = 400/250,0/250
+    callwaiting = !400/200,!0/3000,!400/200,!0/3000,!400/200,!0/3000,!400/200
+    dialrecall = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+    record = 1400/425,0/15000
+    info = 400/750,0/100,400/750,0/100,400/750,0/100,400/750,0/400
+    stutter = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+    unobtainable = 400/75,0/100,400/75,0/100,400/75,0/100,400/75,0/400
+
+[ph]
+    description = Philippines
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 480+620/500,0/500
+    ring = 425+480/1000,0/4000
+    congestion = 480+620/250,0/250
+    callwaiting = 440/300,0/10000
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,425
+
+[pl]
+    description = Poland
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/500,0/500
+    callwaiting = 425/150,0/150,425/150,0/4000
+    dialrecall = 425/500,0/50
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[pt]
+    description = Portugal
+    ringcadence = 1000,5000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/5000
+    congestion = 425/200,0/200
+    callwaiting = 440/300,0/10000
+    dialrecall = 425/1000,0/200
+    record = 1400/500,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[ru]
+    description = Russian Federation / ex Soviet Union
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/350,0/350
+    ring = 425/1000,0/4000
+    congestion = 425/175,0/175
+    callwaiting = 425/200,0/5000
+    record = 1400/400,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    dialrecall = 425/400,0/40
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[se]
+    description = Sweden
+    ringcadence = 1000,5000
+    dial = 425
+    busy = 425/250,0/250
+    ring = 425/1000,0/5000
+    congestion = 425/250,0/750
+    callwaiting = 425/200,0/500,425/200,0/9100
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/500,0/15000
+    info = !950/332,!0/24,!1400/332,!0/24,!1800/332,!0/2024,!950/332,!0/24,!1400/332,!0/24,!1800/332,!0/2024,!950/332,!0/24,!1400/332,!0/24,!1800/332,!0/2024,!950/332,!0/24,!1400/332,!0/24,!1800/332,!0/2024,!950/332,!0/24,!1400/332,!0/24,!1800/332,0
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[sg]
+    description = Singapore
+    ringcadence = 400,200,400,2000
+    dial        = 425
+    ring        = 425*24/400,0/200,425*24/400,0/2000     ; modulation should be 100%, not 90%
+    busy        = 425/750,0/750
+    congestion  = 425/250,0/250
+    callwaiting = 425*24/300,0/200,425*24/300,0/3200
+    stutter     = !425/200,!0/200,!425/600,!0/200,!425/200,!0/200,!425/600,!0/200,!425/200,!0/200,!425/600,!0/200,!425/200,!0/200,!425/600,!0/200,425
+    info        = 950/330,1400/330,1800/330,0/1000       ; not currently in use acc. to reference
+    dialrecall  = 425*24/500,0/500,425/500,0/2500        ; unspecified in IDA reference, use repeating Holding Tone A,B
+    record      = 1400/500,0/15000                       ; unspecified in IDA reference, use 0.5s tone every 15s
+    nutone      = 425/2500,0/500
+    intrusion   = 425/250,0/2000
+    warning     = 425/624,0/4376                         ; end of period tone, warning
+    acceptance  = 425/125,0/125
+    holdinga    = !425*24/500,!0/500                     ; followed by holdingb
+    holdingb    = !425/500,!0/2500
+
+[th]
+    description = Thailand
+    ringcadence = 1000,4000
+    dial = 400*50
+    busy = 400/500,0/500
+    ring = 420/1000,0/5000
+    congestion = 400/300,0/300
+    callwaiting = 1000/400,10000/400,1000/400
+    dialrecall = 400*50/400,0/100,400*50/400,0/100
+    record = 1400/500,0/15000
+    info = 950/330,1400/330,1800/330
+    stutter = !400/200,!0/200,!400/600,!0/200,!400/200,!0/200,!400/600,!0/200,!400/200,!0/200,!400/600,!0/200,!400/200,!0/200,!400/600,!0/200,400
+
+[uk]
+    description = United Kingdom
+    ringcadence = 400,200,400,2000
+    dial = 350+440
+    specialdial = 350+440/750,440/750
+    busy = 400/375,0/375
+    congestion = 400/400,0/350,400/225,0/525
+    specialcongestion = 400/200,1004/300
+    unobtainable = 400
+    ring = 400+450/400,0/200,400+450/400,0/2000
+    callwaiting = 400/100,0/4000
+    specialcallwaiting = 400/250,0/250,400/250,0/250,400/250,0/5000
+    creditexpired = 400/125,0/125
+    confirm = 1400
+    switching = 400/200,0/400,400/2000,0/400
+    info = 950/330,0/15,1400/330,0/15,1800/330,0/1000
+    record = 1400/500,0/60000
+    stutter = 350+440/750,440/750
+
+[us]
+    description = United States / North America
+    ringcadence = 2000,4000
+    dial = 350+440
+    busy = 480+620/500,0/500
+    ring = 440+480/2000,0/4000
+    congestion = 480+620/250,0/250
+    callwaiting = 440/300,0/10000
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+
+[us-old]
+    description = United States Circa 1950/ North America
+    ringcadence = 2000,4000
+    dial = 600*120
+    busy = 500*100/500,0/500
+    ring = 420*40/2000,0/4000
+    congestion = 500*100/250,0/250
+    callwaiting = 440/300,0/10000
+    dialrecall = !600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,600*120
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,600*120
+
+[tw]
+    description = Taiwan
+    ringcadence = 1000,4000
+    dial = 350+440
+    busy = 480+620/500,0/500
+    ring = 440+480/1000,0/2000
+    congestion = 480+620/250,0/250
+    callwaiting = 350+440/250,0/250,350+440/250,0/3250
+    dialrecall = 300/1500,0/500
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+
+[ve]
+    description = Venezuela / South America
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250
+    callwaiting = 400+450/300,0/6000
+    dialrecall = 425
+    record = 1400/500,0/15000
+    info = !950/330,!1440/330,!1800/330,0/1000
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[za]
+    description = South Africa
+    ringcadence = 400,200,400,2000
+    dial = 400*33
+    ring = 400*33/400,0/200,400*33/400,0/2000
+    callwaiting = 400*33/250,0/250,400*33/250,0/250,400*33/250,0/250,400*33/250,0/250
+    congestion = 400/250,0/250
+    busy = 400/500,0/500
+    dialrecall = 350+440
+    record = 1400/500,0/10000
+    info = 950/330,1400/330,1800/330,0/330
+    stutter = !400*33/100,!0/100,!400*33/100,!0/100,!400*33/100,!0/100,!400*33/100,!0/100,!400*33/100,!0/100,!400*33/100,!0/100,400*33
+
+[general]
+    country=us		; default location
+
+[at]
+    description = Austria
+    ringcadence = 1000,5000
+    dial = 420
+    busy = 420/400,0/400
+    ring = 420/1000,0/5000
+    congestion = 420/200,0/200
+    callwaiting = 420/40,0/1960
+    dialrecall = 420
+    record = 1400/80,0/14920
+    info = 950/330,1450/330,1850/330,0/1000
+    stutter = 380+420
+
+[au]
+    description = Australia
+    ringcadence = 400,200,400,2000
+    dial = 413+438
+    busy = 425/375,0/375
+    ring = 413+438/400,0/200,413+438/400,0/2000
+    congestion = 425/375,0/375,420/375,0/375
+    callwaiting = 425/200,0/200,425/200,0/4400
+    dialrecall = 413+438
+    record = !425/1000,!0/15000,425/360,0/15000
+    info = 425/2500,0/500
+    std = !525/100,!0/100,!525/100,!0/100,!525/100,!0/100,!525/100,!0/100,!525/100
+    facility = 425
+    stutter = 413+438/100,0/40
+    ringmobile = 400+450/400,0/200,400+450/400,0/2000
+
+[bg]
+    description = Bulgaria
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250
+    callwaiting = 425/150,0/150,425/150,0/4000
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/425,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425/1500,0/100
+
+[br]
+    description = Brazil
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/250,0/250
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250,425/750,0/250
+    callwaiting = 425/50,0/1000
+    dialrecall = 350+440
+    record = 425/250,0/250
+    info = 950/330,1400/330,1800/330
+    stutter = 350+440
+
+[be]
+    description = Belgium
+    ringcadence = 1000,3000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/3000
+    congestion = 425/167,0/167
+    callwaiting = 1400/175,0/175,1400/175,0/3500
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = 900/330,1400/330,1800/330,0/1000
+    stutter = 425/1000,0/250
+
+[ch]
+    description = Switzerland
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/200,0/200,425/200,0/4000
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/80,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425+340/1100,0/1100
+
+[cl]
+    description = Chile
+    ringcadence = 1000,3000
+    dial = 400
+    busy = 400/500,0/500
+    ring = 400/1000,0/3000
+    congestion = 400/200,0/200
+    callwaiting = 400/250,0/8750
+    dialrecall = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+    record = 1400/500,0/15000
+    info = 950/333,1400/333,1800/333,0/1000
+    stutter = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+
+[cn]
+    description = China
+    ringcadence = 1000,4000
+    dial = 450
+    busy = 450/350,0/350
+    ring = 450/1000,0/4000
+    congestion = 450/700,0/700
+    callwaiting = 450/400,0/4000
+    dialrecall = 450
+    record = 950/400,0/10000
+    info = 450/100,0/100,450/100,0/100,450/100,0/100,450/400,0/400
+    stutter = 450+425
+
+[cz]
+    description = Czech Republic
+    ringcadence = 1000,4000
+    dial = 425/330,0/330,425/660,0/660
+    busy = 425/330,0/330
+    ring = 425/1000,0/4000
+    congestion = 425/165,0/165
+    callwaiting = 425/330,0/9000
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425/330,0/330,425/660,0/660
+    record = 1400/500,0/14000
+    info = 950/330,0/30,1400/330,0/30,1800/330,0/1000
+    stutter = 425/450,0/50
+
+[de]
+    description = Germany
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/480,0/480
+    ring = 425/1000,0/4000
+    congestion = 425/240,0/240
+    callwaiting = !425/200,!0/200,!425/200,!0/5000,!425/200,!0/200,!425/200,!0/5000,!425/200,!0/200,!425/200,!0/5000,!425/200,!0/200,!425/200,!0/5000,!425/200,!0/200,!425/200,0
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/80,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425+400
+
+[dk]
+    description = Denmark
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = !425/200,!0/600,!425/200,!0/3000,!425/200,!0/200,!425/200,0
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/80,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425/450,0/50
+
+[ee]
+    description = Estonia
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/300,0/300
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 950/650,0/325,950/325,0/30,1400/1300,0/2600
+    dialrecall = 425/650,0/25
+    record = 1400/500,0/15000
+    info = 950/650,0/325,950/325,0/30,1400/1300,0/2600
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[es]
+    description = Spain
+    ringcadence = 1500,3000
+    dial = 425
+    busy = 425/200,0/200
+    ring = 425/1500,0/3000
+    congestion = 425/200,0/200,425/200,0/200,425/200,0/600
+    callwaiting = 425/175,0/175,425/175,0/3500
+    dialrecall = !425/200,!0/200,!425/200,!0/200,!425/200,!0/200,425
+    record = 1400/500,0/15000
+    info = 950/330,0/1000
+    dialout = 500
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[fi]
+    description = Finland
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/300,0/300
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/150,0/150,425/150,0/8000
+    dialrecall = 425/650,0/25
+    record = 1400/500,0/15000
+    info = 950/650,0/325,950/325,0/30,1400/1300,0/2600
+    stutter = 425/650,0/25
+
+[fr]
+    description = France
+    ringcadence = 1500,3500
+    dial = 440
+    busy = 440/500,0/500
+    ring = 440/1500,0/3500
+    congestion = 440/250,0/250
+    callwait = 440/300,0/10000
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330
+    stutter = !440/100,!0/100,!440/100,!0/100,!440/100,!0/100,!440/100,!0/100,!440/100,!0/100,!440/100,!0/100,440
+
+[gr]
+    description = Greece
+    ringcadence = 1000,4000
+    dial = 425/200,0/300,425/700,0/800
+    busy = 425/300,0/300
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/150,0/150,425/150,0/8000
+    dialrecall = 425/650,0/25
+    record = 1400/400,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = 425/650,0/25
+
+[hu]
+    description = Hungary
+    ringcadence = 1250,3750
+    dial = 425
+    busy = 425/300,0/300
+    ring = 425/1250,0/3750
+    congestion = 425/300,0/300
+    callwaiting = 425/40,0/1960
+    dialrecall = 425+450
+    record = 1400/400,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = 350+375+400
+
+[il]
+    description = Israel
+    ringcadence = 1000,3000
+    dial = 414
+    busy = 414/500,0/500
+    ring = 414/1000,0/3000
+    congestion = 414/250,0/250
+    callwaiting = 414/100,0/100,414/100,0/100,414/600,0/3000
+    dialrecall = !414/100,!0/100,!414/100,!0/100,!414/100,!0/100,414
+    record = 1400/500,0/15000
+    info = 1000/330,1400/330,1800/330,0/1000
+    stutter = !414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,!414/160,!0/160,414
+
+[in]
+    description = India
+    ringcadence = 400,200,400,2000
+    dial = 400*25
+    busy = 400/750,0/750
+    ring = 400*25/400,0/200,400*25/400,0/2000
+    congestion = 400/250,0/250
+    callwaiting = 400/200,0/100,400/200,0/7500
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0/1000
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,400*25
+
+[it]
+    description = Italy
+    ringcadence = 1000,4000
+    dial = 425/200,0/200,425/600,0/1000
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/400,0/100,425/250,0/100,425/150,0/14000
+    dialrecall = 470/400,425/400
+    record = 1400/400,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = 470/400,425/400
+
+[lt]
+    description = Lithuania
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/350,0/350
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/150,0/150,425/150,0/4000
+    dialrecall = 425/500,0/50
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[jp]
+    description = Japan
+    ringcadence = 1000,2000
+    dial = 400
+    busy = 400/500,0/500
+    ring = 400+15/1000,0/2000
+    congestion = 400/500,0/500
+    callwaiting = 400+16/500,0/8000
+    dialrecall = !400/200,!0/200,!400/200,!0/200,!400/200,!0/200,400
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+
+[mx]
+    description = Mexico
+    ringcadence = 2000,4000
+    dial = 425
+    busy = 425/250,0/250
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250
+    callwaiting = 425/200,0/600,425/200,0/10000
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = 950/330,0/30,1400/330,0/30,1800/330,0/1000
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,425
+
+[my]
+    description = Malaysia
+    ringcadence = 2000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/400,0/200,425/400,0/2000
+    congestion = 425/500,0/500
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[nl]
+    description = Netherlands
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250
+    callwaiting = 425/500,0/9500
+    dialrecall = 425/500,0/50
+    record = 1400/500,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = 425/500,0/50
+
+[no]
+    description = Norway
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/200,0/200
+    callwaiting = 425/200,0/600,425/200,0/10000
+    dialrecall = 470/400,425/400
+    record = 1400/400,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,0
+    stutter = 470/400,425/400
+
+[nz]
+    description = New Zealand
+    ringcadence = 400,200,400,2000
+    dial = 400
+    busy = 400/500,0/500
+    ring = 400+450/400,0/200,400+450/400,0/2000
+    congestion = 400/250,0/250
+    callwaiting = !400/200,!0/3000,!400/200,!0/3000,!400/200,!0/3000,!400/200
+    dialrecall = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+    record = 1400/425,0/15000
+    info = 400/750,0/100,400/750,0/100,400/750,0/100,400/750,0/400
+    stutter = !400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,!400/100,!0/100,400
+    unobtainable = 400/75,0/100,400/75,0/100,400/75,0/100,400/75,0/400
+
+[ph]
+    description = Philippines
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 480+620/500,0/500
+    ring = 425+480/1000,0/4000
+    congestion = 480+620/250,0/250
+    callwaiting = 440/300,0/10000
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,425
+
+[pl]
+    description = Poland
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/500,0/500
+    callwaiting = 425/150,0/150,425/150,0/4000
+    dialrecall = 425/500,0/50
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000,!950/330,!1400/330,!1800/330,!0/1000
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[pt]
+    description = Portugal
+    ringcadence = 1000,5000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/5000
+    congestion = 425/200,0/200
+    callwaiting = 440/300,0/10000
+    dialrecall = 425/1000,0/200
+    record = 1400/500,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[ru]
+    description = Russian Federation / ex Soviet Union
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/350,0/350
+    ring = 425/1000,0/4000
+    congestion = 425/175,0/175
+    callwaiting = 425/200,0/5000
+    record = 1400/400,0/15000
+    info = 950/330,1400/330,1800/330,0/1000
+    dialrecall = 425/400,0/40
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[se]
+    description = Sweden
+    ringcadence = 1000,5000
+    dial = 425
+    busy = 425/250,0/250
+    ring = 425/1000,0/5000
+    congestion = 425/250,0/750
+    callwaiting = 425/200,0/500,425/200,0/9100
+    dialrecall = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+    record = 1400/500,0/15000
+    info = !950/332,!0/24,!1400/332,!0/24,!1800/332,!0/2024,!950/332,!0/24,!1400/332,!0/24,!1800/332,!0/2024,!950/332,!0/24,!1400/332,!0/24,!1800/332,!0/2024,!950/332,!0/24,!1400/332,!0/24,!1800/332,!0/2024,!950/332,!0/24,!1400/332,!0/24,!1800/332,0
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[sg]
+    description = Singapore
+    ringcadence = 400,200,400,2000
+    dial        = 425
+    ring        = 425*24/400,0/200,425*24/400,0/2000     ; modulation should be 100%, not 90%
+    busy        = 425/750,0/750
+    congestion  = 425/250,0/250
+    callwaiting = 425*24/300,0/200,425*24/300,0/3200
+    stutter     = !425/200,!0/200,!425/600,!0/200,!425/200,!0/200,!425/600,!0/200,!425/200,!0/200,!425/600,!0/200,!425/200,!0/200,!425/600,!0/200,425
+    info        = 950/330,1400/330,1800/330,0/1000       ; not currently in use acc. to reference
+    dialrecall  = 425*24/500,0/500,425/500,0/2500        ; unspecified in IDA reference, use repeating Holding Tone A,B
+    record      = 1400/500,0/15000                       ; unspecified in IDA reference, use 0.5s tone every 15s
+    nutone      = 425/2500,0/500
+    intrusion   = 425/250,0/2000
+    warning     = 425/624,0/4376                         ; end of period tone, warning
+    acceptance  = 425/125,0/125
+    holdinga    = !425*24/500,!0/500                     ; followed by holdingb
+    holdingb    = !425/500,!0/2500
+
+[th]
+    description = Thailand
+    ringcadence = 1000,4000
+    dial = 400*50
+    busy = 400/500,0/500
+    ring = 420/1000,0/5000
+    congestion = 400/300,0/300
+    callwaiting = 1000/400,10000/400,1000/400
+    dialrecall = 400*50/400,0/100,400*50/400,0/100
+    record = 1400/500,0/15000
+    info = 950/330,1400/330,1800/330
+    stutter = !400/200,!0/200,!400/600,!0/200,!400/200,!0/200,!400/600,!0/200,!400/200,!0/200,!400/600,!0/200,!400/200,!0/200,!400/600,!0/200,400
+
+[uk]
+    description = United Kingdom
+    ringcadence = 400,200,400,2000
+    dial = 350+440
+    specialdial = 350+440/750,440/750
+    busy = 400/375,0/375
+    congestion = 400/400,0/350,400/225,0/525
+    specialcongestion = 400/200,1004/300
+    unobtainable = 400
+    ring = 400+450/400,0/200,400+450/400,0/2000
+    callwaiting = 400/100,0/4000
+    specialcallwaiting = 400/250,0/250,400/250,0/250,400/250,0/5000
+    creditexpired = 400/125,0/125
+    confirm = 1400
+    switching = 400/200,0/400,400/2000,0/400
+    info = 950/330,0/15,1400/330,0/15,1800/330,0/1000
+    record = 1400/500,0/60000
+    stutter = 350+440/750,440/750
+
+[us]
+    description = United States / North America
+    ringcadence = 2000,4000
+    dial = 350+440
+    busy = 480+620/500,0/500
+    ring = 440+480/2000,0/4000
+    congestion = 480+620/250,0/250
+    callwaiting = 440/300,0/10000
+    dialrecall = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+
+[us-old]
+    description = United States Circa 1950/ North America
+    ringcadence = 2000,4000
+    dial = 600*120
+    busy = 500*100/500,0/500
+    ring = 420*40/2000,0/4000
+    congestion = 500*100/250,0/250
+    callwaiting = 440/300,0/10000
+    dialrecall = !600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,600*120
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,!600*120/100,!0/100,600*120
+
+[tw]
+    description = Taiwan
+    ringcadence = 1000,4000
+    dial = 350+440
+    busy = 480+620/500,0/500
+    ring = 440+480/1000,0/2000
+    congestion = 480+620/250,0/250
+    callwaiting = 350+440/250,0/250,350+440/250,0/3250
+    dialrecall = 300/1500,0/500
+    record = 1400/500,0/15000
+    info = !950/330,!1400/330,!1800/330,0
+    stutter = !350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,!350+440/100,!0/100,350+440
+
+[ve]
+    description = Venezuela / South America
+    ringcadence = 1000,4000
+    dial = 425
+    busy = 425/500,0/500
+    ring = 425/1000,0/4000
+    congestion = 425/250,0/250
+    callwaiting = 400+450/300,0/6000
+    dialrecall = 425
+    record = 1400/500,0/15000
+    info = !950/330,!1440/330,!1800/330,0/1000
+    stutter = !425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,!425/100,!0/100,425
+
+[za]
+    description = South Africa
+    ringcadence = 400,200,400,2000
+    dial = 400*33
+    ring = 400*33/400,0/200,400*33/400,0/2000
+    callwaiting = 400*33/250,0/250,400*33/250,0/250,400*33/250,0/250,400*33/250,0/250
+    congestion = 400/250,0/250
+    busy = 400/500,0/500
+    dialrecall = 350+440
+    record = 1400/500,0/10000
+    info = 950/330,1400/330,1800/330,0/330
+    stutter = !400*33/100,!0/100,!400*33/100,!0/100,!400*33/100,!0/100,!400*33/100,!0/100,!400*33/100,!0/100,!400*33/100,!0/100,400*33
+[general]
+
+[logfiles]
+    console => notice,warning,error
+    messages => notice,warning,error
+[general]
+    enabled = no
+    port = 5038
+    bindaddr = 0.0.0.0
+[general]
+
+[rooms]
+[general]
+    firstdigittimeout = 30000 ; default 16000 = 16s
+    gendigittimeout = 10000   ; default  8000 = 8s
+    matchdigittimeout = 5000  ; defaults 3000 = 3s
+[general]
+    format=wav49
+    serveremail=asterisk
+    maxsilence=10
+    silencethreshold=128
+    emaildateformat=%A, %B %d, %Y at %r
+
+[zonemessages]
+    eastern=America/New_York|'vm-received' Q 'digits/at' IMp
+    central=America/Chicago|'vm-received' Q 'digits/at' IMp
+    central24=America/Chicago|'vm-received' q 'digits/at' H N 'hours'
+    military=Zulu|'vm-received' q 'digits/at' H N 'hours' 'phonetic/z_p'
+
+[template-sv_SE_email]
+    messagebody=Hej ${MVM_NAME}:\n\n\tDu har fått ett röstbrevlåde-meddelande från ${MVM_CALLERID}.\nLängd: ${MVM_DUR}\nMailbox ${MVM_MAILBOX}\nDatum:  ${MVM_DATE}. \nMeddelandet bifogas det här brevet. Om du inte kan läsa det, kontakta intern support. \nHälsningar\n\n\t\t\t\t--Asterisk\n
+    subject = Du har fått röstmeddelande (se bilaga)
+    fromemail = swedish-voicemail-service@stockholm.example.com
+    fromaddress = Asterisk Röstbrevlåda
+    charset=iso-8859-1
+    attachmedia=yes
+    dateformat=%A, %d %B %Y at %H:%M:%S
+    locale=sv_SE
+
+[template-en_US_email]
+    messagebody=Dear ${MVM_NAME}:\n\n\tjust wanted to let you know you were just left a ${MVM_DUR} long message \nin mailbox ${MVM_MAILBOX} from ${MVM_CALLERID}, on ${MVM_DATE}, so you might\nwant to check it when you get a chance.  Thanks!\n\n\t\t\t\t--Asterisk\n
+    subject = New voicemail
+    charset=ascii
+    attachmedia=yes
+    dateformat=%A, %B %d, %Y at %r
+[general]
+    misdn_init=/etc/misdn-init.conf
+    debug=0
+    ntdebugflags=0
+    ntdebugfile=/var/log/misdn-nt.log
+    ntkeepcalls=no
+    bridging=no
+    stop_tone_after_first_digit=yes
+    append_digits2exten=yes
+    dynamic_crypt=no
+    crypt_prefix=**
+    crypt_keys=test,muh
+
+[default]
+    context=misdn
+    language=en
+    musicclass=default
+    senddtmf=yes
+    far_alerting=no
+    allowed_bearers=all
+    internationalprefix=00
+    nationalprefix=0
+    rxgain=0
+    txgain=0
+    te_choose_channel=no
+    l1watcher_timeout=0
+    pmp_l1_check=no
+    reject_cause=16
+    need_more_infos=no
+    nttimeout=no
+    method=standard
+    overlapdial=yes
+    dialplan=0
+    localdialplan=0
+    cpndialplan=0
+    early_bconnect=yes
+    incoming_early_audio=no
+    nodialtone=no
+    presentation=-1
+    screen=-1
+    outgoing_colp=0
+    display_connected=0
+    display_setup=0
+    jitterbuffer=4000
+    jitterbuffer_upper_threshold=0
+    hdlc=no
+    max_incoming=-1
+    max_outgoing=-1
+    cc_request_retention=yes
+
+[intern]
+    ports=1,2
+    context=Intern
+
+[internPP]
+    ports=3
+
+[first_extern]
+    ports=4
+    context=Extern1
+    msns=*
+
+[second_extern]
+    ports=5
+    context=Extern2
+    callerid="Asterisk" <1234>
+    msns=102,144,101,104
+[modules]
+    autoload=yes
+    noload => chan_alsa.so
+    noload => chan_console.so
+    noload => res_hep.so
+    noload => res_hep_pjsip.so
+    noload => res_hep_rtcp.so
+[default](!)
+    disallow=all
+    allow=ulaw
+    allow=h264
+    context=incoming-motif ; Default context that incoming sessions will land in
+
+[gtalk-endpoint](default)
+[general]
+
+[default]
+    mode=files
+    directory=moh
+    #
+    # Sample muted configuration file
+    #
+    # Copyright (C) 2004 Digium, Inc.
+    #
+    # First you have the host, username, and password
+    # we use to connect to the asterisk system
+    #
+    # What is this? Well, haven't you ever wished you could automatically
+    # turn down the volume on your stereo, CDPlayer, etc, when a call comes in,
+    # and then return it to normal when the call ends? Well, this is a possible
+    # mechanism to make this happen!
+    # You have to fire up the new utils/muted, which runs as a daemon in the
+    # background. This daemon connects to asterisk via a manager interface, and
+    # also reads this config file from /etc/muted.conf. when the channels mentioned
+    # are activated, it tweaks the sound levels on the sound card(s).
+    # So, depending on the sound card, you may be able to run all your sound
+    # generating devices thru your sound card, and use this mechanism to quiet
+    # them down while you are on the phone. If anyone figures out how to make
+    # this work with kids, please inform!!
+    #
+    host localhost
+    user user
+    pass pass
+    #
+    # List each channel we're supposed to watch
+    #
+    channel DAHDI/1
+    channel DAHDI/2
+    channel SIP/mark
+    #
+    # Mute level is the percentage of the current volume we should
+    # lower the music to.
+    #
+    mutelevel 20
+    #
+    # Smooth fade makes the fadein/fadeout nicer sounding
+    #
+    smoothfade
+[general]
+    bindaddr=0.0.0.0
+    h323id=ObjSysAsterisk
+    e164=100
+    callerid=asterisk
+    aniasdni=no
+    gatekeeper = DISABLE
+    context=default
+    disallow=all     ;Note order of disallow/allow is important.
+    allow=gsm
+    allow=ulaw
+    dtmfmode=rfc2833
+    faxdetect = cng
+    directmedia=no
+    directrtpsetup=no
+
+[myuser1]
+    type=user
+    context=context1
+    disallow=all
+    allow=gsm
+    allow=ulaw
+
+[mypeer1]
+    type=peer
+    context=context2
+    ip=a.b.c.d   ; UPDATE with appropriate ip address
+    port=1720    ; UPDATE with appropriate port
+    e164=101
+
+[myfriend1]
+    type=friend
+    context=default
+    ip=10.0.0.82   ; UPDATE with appropriate ip address
+    port=1820    ; UPDATE with appropriate port
+    disallow=all
+    allow=ulaw
+    e164=12345
+    rtptimeout=60
+    dtmfmode=rfc2833
+[general]
+[general]
+
+[my_video](!)      ; you can just include in your config
+        videodevice = /dev/video0	; uses your V4L webcam as video source
+        videodevice = X11		; X11 grabber. Dragging on the local display moves the origin.
+        videocodec = h263		; also h261, h263p, h264, mpeg4, ...
+        video_size = 352x288	; the format WIDTHxHEIGHT is also ok
+        video_size = cif		; sqcif, qcif, cif, qvga, vga, ...
+        camera_size = cif
+        remote_size = cif
+        local_size = qcif
+        bitrate = 60000             ; rate told to ffmpeg.
+        fps = 5                     ; frames per second from the source.
+
+[my_skin](!)
+        keypad = /tmp/keypad.jpg
+        region = 1 rect   19  18    67  18  28
+        region = 2 rect   84  18   133  18  28
+        region = 3 rect  152  18   201  18  28
+        region = 4 rect   19  60    67  60  28
+        region = 5 rect   84  60   133  60  28
+        region = 6 rect  152  60   201  60  28
+        region = 7 rect   19 103    67 103  28
+        region = 8 rect   84 103   133 103  28
+        region = 9 rect  152 103   201 103  28
+        region = * rect   19 146    67 146  28
+        region = 0 rect   84 146   133 146  28
+        region = # rect  152 146   201 146  28
+        region = pickup rect  229 15  267 15 40
+        region = hangup rect  230 66  270 64 40
+        region = mute circle  232 141 264 141 33
+        region = sendvideo circle  235 185 266 185 33
+        region = autoanswer rect 228 212 275 212 50
+
+[skin2](!)
+        keypad = /tmp/kpad2.jpg
+        keypad_font = /tmp/font.png
+[interfaces]
+    mode=immediate
+    format=slinear
+    echocancel=medium
+[general]
+    default_profile=polycom ; The default profile to use if none specified in users.conf
+
+[polycom]
+    staticdir => configs/ ; Sub directory of AST_DATA_DIR/phoneprov that static files reside
+    mime_type => text/xml ; Default mime type to use if one isn't specified or the
+    static_file => bootrom.ld,application/octet-stream ; Static files the phone will download
+    static_file => bootrom.ver,plain/text              ; static_file => filename,mime-type
+    static_file => sip.ld,application/octet-stream
+    static_file => sip.ver,plain/text
+    static_file => sip.cfg
+    static_file => custom.cfg
+    static_file => 2201-06642-001.bootrom.ld,application/octet-stream
+    static_file => 2201-06642-001.sip.ld,application/octet-stream
+    static_file => 2345-11000-001.bootrom.ld,application/octet-stream
+    static_file => 2345-11300-001.bootrom.ld,application/octet-stream
+    static_file => 2345-11300-010.bootrom.ld,application/octet-stream
+    static_file => 2345-11300-010.sip.ld,application/octet-stream
+    static_file => 2345-11402-001.bootrom.ld,application/octet-stream
+    static_file => 2345-11402-001.sip.ld,application/octet-stream
+    static_file => 2345-11500-001.bootrom.ld,application/octet-stream
+    static_file => 2345-11500-010.bootrom.ld,application/octet-stream
+    static_file => 2345-11500-020.bootrom.ld,application/octet-stream
+    static_file => 2345-11500-030.bootrom.ld,application/octet-stream
+    static_file => 2345-11500-030.sip.ld,application/octet-stream
+    static_file => 2345-11500-040.bootrom.ld,application/octet-stream
+    static_file => 2345-11500-040.sip.ld,application/octet-stream
+    static_file => 2345-11600-001.bootrom.ld,application/octet-stream
+    static_file => 2345-11600-001.sip.ld,application/octet-stream
+    static_file => 2345-11605-001.bootrom.ld,application/octet-stream
+    static_file => 2345-11605-001.sip.ld,application/octet-stream
+    static_file => 2345-12200-001.bootrom.ld,application/octet-stream
+    static_file => 2345-12200-001.sip.ld,application/octet-stream
+    static_file => 2345-12200-002.bootrom.ld,application/octet-stream
+    static_file => 2345-12200-002.sip.ld,application/octet-stream
+    static_file => 2345-12200-004.bootrom.ld,application/octet-stream
+    static_file => 2345-12200-004.sip.ld,application/octet-stream
+    static_file => 2345-12200-005.bootrom.ld,application/octet-stream
+    static_file => 2345-12200-005.sip.ld,application/octet-stream
+    static_file => 2345-12365-001.bootrom.ld,application/octet-stream
+    static_file => 2345-12365-001.sip.ld,application/octet-stream
+    static_file => 2345-12500-001.bootrom.ld,application/octet-stream
+    static_file => 2345-12500-001.sip.ld,application/octet-stream
+    static_file => 2345-12560-001.bootrom.ld,application/octet-stream
+    static_file => 2345-12560-001.sip.ld,application/octet-stream
+    static_file => 2345-12600-001.bootrom.ld,application/octet-stream
+    static_file => 2345-12600-001.sip.ld,application/octet-stream
+    static_file => 2345-12670-001.bootrom.ld,application/octet-stream
+    static_file => 2345-12670-001.sip.ld,application/octet-stream
+    static_file => 3111-15600-001.bootrom.ld,application/octet-stream
+    static_file => 3111-15600-001.sip.ld,application/octet-stream
+    static_file => 3111-40000-001.bootrom.ld,application/octet-stream
+    static_file => 3111-40000-001.sip.ld,application/octet-stream
+    static_file => SoundPointIPWelcome.wav,application/octet-stream
+    static_file => SoundPointIPLocalization/Japanese_Japan/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Norwegian_Norway/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Spanish_Spain/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Portuguese_Portugal/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/English_United_Kingdom/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/English_United_States/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Russian_Russia/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Italian_Italy/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Chinese_China/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Swedish_Sweden/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/English_Canada/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/German_Germany/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/French_France/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Danish_Denmark/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Dutch_Netherlands/SoundPointIP-dictionary.xml
+    static_file => SoundPointIPLocalization/Korean_Korea/SoundPointIP-dictionary.xml
+    ${MAC}.cfg => 000000000000.cfg               ; Dynamically generated files.
+    ${MAC}-phone.cfg => 000000000000-phone.cfg   ; (relative to AST_DATA_DIR/phoneprov)
+    config/${MAC} => polycom.xml                 ; Dynamic Filename => template file
+    ${MAC}-directory.xml => 000000000000-directory.xml
+    setvar => CUSTOM_CONFIG=/var/lib/asterisk/phoneprov/configs/custom.cfg  ; Custom variable
+    snom-${MAC}.xml => snom-mac.xml
+[clear-mwi]
+    Event=>message-summary
+    Content-type=>application/simple-message-summary
+    Content=>Messages-Waiting: no
+    Content=>Message-Account: sip:asterisk@127.0.0.1
+    Content=>Voice-Message: 0/0 (0/0)
+    Content=>
+
+[aastra-check-cfg]
+    Event=>check-sync
+
+[aastra-xml]
+    Event=>aastra-xml
+
+[digium-check-cfg]
+    Event=>check-sync
+
+[linksys-cold-restart]
+    Event=>reboot_now
+
+[linksys-warm-restart]
+    Event=>restart_now
+
+[polycom-check-cfg]
+    Event=>check-sync
+
+[sipura-check-cfg]
+    Event=>resync
+
+[sipura-get-report]
+    Event=>report
+
+[snom-check-cfg]
+    Event=>check-sync\;reboot=false
+
+[snom-reboot]
+    Event=>check-sync\;reboot=true
+
+[cisco-check-cfg]
+    Event=>check-sync
+[general]
+[general]
+    persistentmembers = yes
+    monitor-type = MixMonitor
+[general]
+[general]
+    dbfile => /var/lib/asterisk/sqlite.db
+    config_table => ast_config
+[general]
+[globals]
+    proxytype=http
+    proxyport=8001
+[general]
+    statusevents=yes
+    t38timeout=5000
+[_general]
+
+[config]
+    additionalFilter=(objectClass=AstConfig)
+    filename = AstConfigFilename
+    category = AstConfigCategory
+    variable_name = AstConfigVariableName
+    variable_value = AstConfigVariableValue
+    cat_metric = AstConfigCategoryMetric
+    commented = AstConfigCommented
+
+[extensions]
+    context  =  AstExtensionContext
+    exten  =  AstExtensionExten
+    priority = AstExtensionPriority
+    app = AstExtensionApplication
+    appdata = AstExtensionApplicationData
+    additionalFilter=(objectClass=AstExtension)
+
+[sip]
+    name = cn       ; We use the "cn" as the default value for name on the line above
+    amaflags = AstAccountAMAFlags
+    callgroup = AstAccountCallGroup
+    callerid = AstAccountCallerID
+    directmedia = AstAccountDirectMedia
+    context = AstAccountContext
+    dtmfmode = AstAccountDTMFMode
+    fromuser = AstAccountFromUser
+    fromdomain = AstAccountFromDomain
+    fullcontact = AstAccountFullContact
+    fullcontact = gecos
+    host = AstAccountHost
+    insecure = AstAccountInsecure
+    mailbox = AstAccountMailbox
+    md5secret = AstAccountRealmedPassword           ; Must be an MD5 hash. Field value can start with
+    nat = AstAccountNAT
+    deny = AstAccountDeny
+    permit = AstAccountPermit
+    pickupgroup = AstAccountPickupGroup
+    port = AstAccountPort
+    qualify = AstAccountQualify
+    restrictcid = AstAccountRestrictCID
+    rtptimeout = AstAccountRTPTimeout
+    rtpholdtimeout = AstAccountRTPHoldTimeout
+    type = AstAccountType
+    disallow = AstAccountDisallowedCodec
+    allow = AstAccountAllowedCodec
+    MusicOnHold = AstAccountMusicOnHold
+    regseconds = AstAccountExpirationTimestamp
+    regcontext = AstAccountRegistrationContext
+    regexten = AstAccountRegistrationExten
+    CanCallForward = AstAccountCanCallForward
+    ipaddr = AstAccountIPAddress
+    defaultuser = AstAccountDefaultUser
+    regserver = AstAccountRegistrationServer
+    lastms = AstAccountLastQualifyMilliseconds
+    supportpath = AstAccountPathSupport
+    additionalFilter=(objectClass=AsteriskSIPUser)
+
+[iax]
+    amaflags = AstAccountAMAFlags
+    callerid = AstAccountCallerID
+    context = AstAccountContext
+    fullcontact = AstAccountFullContact
+    fullcontact = gecos
+    host = AstAccountHost
+    mailbox = AstAccountMailbox
+    md5secret = AstAccountRealmedPassword           ; Must be an MD5 hash. Field value can start with
+    deny = AstAccountDeny
+    permit = AstAccountPermit
+    port = AstAccountPort
+    qualify = AstAccountQualify
+    type = AstAccountType
+    disallow = AstAccountDisallowedCodec
+    allow = AstAccountAllowedCodec
+    regseconds = AstAccountExpirationTimestamp
+    regcontext = AstAccountRegistrationContext
+    regexten = AstAccountRegistrationExten
+    notransfer = AstAccountNoTransfer
+    lastms = AstAccountLastQualifyMilliseconds
+    additionalFilter=(objectClass=AstAccountIAX)
+
+[testfamily]
+    MyUSERID = uid
+    additionalFilter=(objectClass=*)
+
+[accounts]
+    amaflags = AstAccountAMAFlags
+    callgroup = AstAccountCallGroup
+    callerid = AstAccountCallerID
+    directmedia = AstAccountDirectMedia
+    context = AstAccountContext
+    dtmfmode = AstAccountDTMFMode
+    fromuser = AstAccountFromUser
+    fromdomain = AstAccountFromDomain
+    fullcontact = AstAccountFullContact
+    fullcontact = gecos
+    host = AstAccountHost
+    insecure = AstAccountInsecure
+    mailbox = AstAccountMailbox
+    md5secret = AstAccountRealmedPassword           ; Must be an MD5 hash. Field value can start with
+    nat = AstAccountNAT
+    deny = AstAccountDeny
+    permit = AstAccountPermit
+    pickupgroup = AstAccountPickupGroup
+    port = AstAccountPort
+    qualify = AstAccountQualify
+    restrictcid = AstAccountRestrictCID
+    rtptimeout = AstAccountRTPTimeout
+    rtpholdtimeout = AstAccountRTPHoldTimeout
+    type = AstAccountType
+    disallow = AstAccountDisallowedCodec
+    allow = AstAccountAllowedCodec
+    MusicOnHold = AstAccountMusicOnHold
+    regseconds = AstAccountExpirationTimestamp
+    regcontext = AstAccountRegistrationContext
+    regexten = AstAccountRegistrationExten
+    CanCallForward = AstAccountCanCallForward
+    additionalFilter=(objectClass=AstAccount)
+[ENV]
+
+[asterisk]
+    enabled => no
+    dsn => asterisk
+    pre-connect => yes
+
+[mysql2]
+    enabled => no
+    dsn => MySQL-asterisk
+    username => myuser
+    password => mypass
+    pre-connect => yes
+
+[sqlserver]
+    enabled => no
+    dsn => mickeysoft
+    max_connections => 5
+    username => oscar
+    password => thegrouch
+    pre-connect => yes
+    sanitysql => select count(*) from systables
+    backslash_is_escape => no
+[general]
+[general]
+
+[default]                       ; Default Parking Lot
+    parkext => 700                  ; What extension to dial to park. (optional; if
+    parkpos => 701-720              ; What range of parking spaces to use - must be numeric
+    context => parkedcalls          ; Which context parked calls and the default park
+[general]
+    dbhost=127.0.0.1
+    dbport=5432
+    dbname=asterisk
+    dbuser=asterisk
+    dbpass=password
+    requirements=warn
+[general]
+[general]
+[general]
+    rtpstart=10000
+    rtpend=20000
+
+[ice_host_candidates]
+[general]
+    mode=old	; method for playing numbers and dates
+
+[digit-base](!)		; base rule for digit strings
+        _digit:[0-9] => digits/${SAY}
+        _digit:[-] => letters/dash
+        _digit:[*] => letters/star
+        _digit:[@] => letters/at
+        _digit:[0-9]. => digit:${SAY:0:1}, digit:${SAY:1}
+
+[date-base](!)		; base rules for dates and times
+        _date:Y:. => num:${SAY:0:4}	; year, 19xx
+        _date:[Bbh]:. => digits/mon-$[${SAY:4:2}-1]			; month name, 0..11
+        _date:[Aa]:. => digits/day-${SAY:16:1}	; day of week
+        _date:[de]:. => num:${SAY:6:2}		; day of month
+        _date:[H]:. => digits/oh, num:${SAY:8:2}			; hour (oh one, oh two, ..., oh nine, ten, eleven, ..., twenty-three)
+        _date:[I]:. => num:$[${SAY:8:2} % 12]	; hour 0-12
+        _date:[M]:. => num:${SAY:10:2}		; minute
+        _date:[pP]:. => digits/p-m	; am pm
+        _date:[S]:. => num:${SAY:13:2}		; seconds
+        _date:[Ii]:. => num:$[${SAY:8:2} % 12]			; hour 0-12
+        _date:[k]:. => num:${SAY:8:2}				; hour (one, two. three, ...,twenty three
+        _date:[m]:. => num:${SAY:4:2}				; month number
+        _date:[Q]:. => date:dby ;incompleat				; "today", "yesterday" or ABdY
+        _date:[q]:. => date:dby ;incompleat				; "" (for today), "yesterday", weekday, or ABdY
+        _date:[R]:. => date:HM${SAY}				; 24 hour time, including minute
+        _date:[T]:. => date:HMS${SAY}				; 24 hour, minure, seconds
+
+[en-base](!)
+        _[n]um:0. => num:${SAY:1}
+        _[n]um:X => digits/${SAY}
+        _[n]um:1X => digits/${SAY}
+        _[n]um:[2-9]0 =>  digits/${SAY}
+        _[n]um:[2-9][1-9] =>  digits/${SAY:0:1}0, num:${SAY:1}
+        _[n]um:X00 => num:${SAY:0:1}, digits/hundred
+        _[n]um:XXX => num:${SAY:0:1}, digits/hundred, num:${SAY:1}
+        _[n]um:X000 => num:${SAY:0:1}, digits/thousand
+        _[n]um:XXXX => num:${SAY:0:1}, digits/thousand, num:${SAY:1}
+        _[n]um:XX000 => num:${SAY:0:2}, digits/thousand
+        _[n]um:XXXXX => num:${SAY:0:2}, digits/thousand, num:${SAY:2}
+        _[n]um:XXX000 => num:${SAY:0:3}, digits/thousand
+        _[n]um:XXXXXX => num:${SAY:0:3}, digits/thousand, num:${SAY:3}
+        _[n]um:X000000 => num:${SAY:0:1}, digits/million
+        _[n]um:XXXXXXX => num:${SAY:0:1}, digits/million, num:${SAY:1}
+        _[n]um:XX000000 => num:${SAY:0:2}, digits/million
+        _[n]um:XXXXXXXX => num:${SAY:0:2}, digits/million, num:${SAY:2}
+        _[n]um:XXX000000 => num:${SAY:0:3}, digits/million
+        _[n]um:XXXXXXXXX => num:${SAY:0:3}, digits/million, num:${SAY:3}
+        _[n]um:X000000000 => num:${SAY:0:1}, digits/billion
+        _[n]um:XXXXXXXXXX => num:${SAY:0:1}, digits/billion, num:${SAY:1}
+        _[n]um:XX000000000 => num:${SAY:0:2}, digits/billion
+        _[n]um:XXXXXXXXXXX => num:${SAY:0:2}, digits/billion, num:${SAY:2}
+        _[n]um:XXX000000000 => num:${SAY:0:3}, digits/billion
+        _[n]um:XXXXXXXXXXXX => num:${SAY:0:3}, digits/billion, num:${SAY:3}
+        _e[n]um:X => digits/h-${SAY}
+        _e[n]um:1X => digits/h-${SAY}
+        _e[n]um:[2-9]0 => digits/h-${SAY}
+        _e[n]um:[2-9][1-9] => num:${SAY:0:1}0, digits/h-${SAY:1}
+        _e[n]um:[1-9]00 => num:${SAY:0:1}, digits/h-hundred
+        _e[n]um:[1-9]XX => num:${SAY:0:1}, digits/h-hundred, enum:${SAY:1}
+
+[en_GB](date-base,digit-base,en-base)
+        _[n]um:XXX => num:${SAY:0:1}, digits/hundred, vm-and, num:${SAY:1}
+
+[it](digit-base,date-base)
+        _[n]um:0. => num:${SAY:1}
+        _[n]um:X => digits/${SAY}
+        _[n]um:1X => digits/${SAY}
+        _[n]um:[2-9]0 =>  digits/${SAY}
+        _[n]um:[2-9][1-9] =>  digits/${SAY:0:1}0, num:${SAY:1}
+        _[n]um:100 => digits/hundred
+        _[n]um:1XX => digits/hundred, num:${SAY:1}
+        _[n]um:[2-9]00 => num:${SAY:0:1}, digits/hundred
+        _[n]um:[2-9]XX => num:${SAY:0:1}, digits/hundred, num:${SAY:1}
+        _[n]um:1000 => digits/thousand
+        _[n]um:1XXX => digits/thousand, num:${SAY:1}
+        _[n]um:[2-9]000 => num:${SAY:0:1}, digits/thousands
+        _[n]um:[2-9]XXX => num:${SAY:0:1}, digits/thousands, num:${SAY:1}
+        _[n]um:XX000 => num:${SAY:0:2}, digits/thousands
+        _[n]um:XXXXX => num:${SAY:0:2}, digits/thousands, num:${SAY:2}
+        _[n]um:XXX000 => num:${SAY:0:3}, digits/thousands
+        _[n]um:XXXXXX => num:${SAY:0:3}, digits/thousands, num:${SAY:3}
+        _[n]um:1000000 => num:${SAY:0:1}, digits/million
+        _[n]um:1XXXXXX => num:${SAY:0:1}, digits/million, num:${SAY:1}
+        _[n]um:[2-9]000000 => num:${SAY:0:1}, digits/millions
+        _[n]um:[2-9]XXXXXX => num:${SAY:0:1}, digits/millions, num:${SAY:1}
+        _[n]um:XX000000 => num:${SAY:0:2}, digits/millions
+        _[n]um:XXXXXXXX => num:${SAY:0:2}, digits/millions, num:${SAY:2}
+        _[n]um:XXX000000 => num:${SAY:0:3}, digits/millions
+        _[n]um:XXXXXXXXX => num:${SAY:0:3}, digits/millions, num:${SAY:3}
+        _[n]um:X000000000 => num:${SAY:0:1}, digits/billion
+        _[n]um:XXXXXXXXXX => num:${SAY:0:1}, digits/billion, num:${SAY:1}
+        _[n]um:XX000000000 => num:${SAY:0:2}, digits/billion
+        _[n]um:XXXXXXXXXXX => num:${SAY:0:2}, digits/billion, num:${SAY:2}
+        _[n]um:XXX000000000 => num:${SAY:0:3}, digits/billion
+        _[n]um:XXXXXXXXXXXX => num:${SAY:0:3}, digits/billion, num:${SAY:3}
+        _datetime::. => date:AdBY 'digits/at' IMp:${SAY}
+        _date::. => date:AdBY:${SAY}
+        _time::. => date:IMp:${SAY}
+
+[en](en-base,date-base,digit-base)
+        _datetime::. => date:AdBY 'digits/at' IMp:${SAY}
+        _date::. => date:AdBY:${SAY}
+        _time::. => date:IMp:${SAY}
+
+[de](date-base,digit-base)
+        _[n]um:0. => num:${SAY:1}
+        _[n]um:X => digits/${SAY}
+        _[n]um:1X => digits/${SAY}
+        _[n]um:[2-9]0 => digits/${SAY}
+        _[n]um:[2-9][1-9] => digits/${SAY:1}-and, digits/${SAY:0:1}0
+        _[n]um:100 => digits/ein, digits/hundred
+        _[n]um:1XX => digits/ein, digits/hundred, num:${SAY:1}
+        _[n]um:[2-9]00 => digits/${SAY:0:1}, digits/hundred
+        _[n]um:[2-9]XX => digits/${SAY:0:1}, digits/hundred, num:${SAY:1}
+        _[n]um:1000 => digits/ein, digits/thousand
+        _[n]um:1XXX => digits/ein, digits/thousand, num:${SAY:1}
+        _[n]um:[2-9]000 => digits/${SAY:0:1}, digits/thousand
+        _[n]um:[2-9]XXX => digits/${SAY:0:1}, digits/thousand, num:${SAY:1}
+        _[n]um:XX000 => num:${SAY:0:2}, digits/thousand
+        _[n]um:XXXXX => num:${SAY:0:2}, digits/thousand, num:${SAY:2}
+        _[n]um:XXX000 => num:${SAY:0:3}, digits/thousand
+        _[n]um:XXXXXX => num:${SAY:0:3}, digits/thousand, num:${SAY:1}
+        _[n]um:1000000 => digits/eine, digits/million
+        _[n]um:1XXXXXX => digits/eine, digits/million, num:${SAY:1}
+        _[n]um:[2-9]000000 => digits/${SAY:0:1}, digits/millions
+        _[n]um:[2-9]XXXXXX => digits/${SAY:0:1}, digits/millions, num:${SAY:1}
+        _[n]um:XX000000 => num:${SAY:0:2}, digits/millions
+        _[n]um:XXXXXXXX => num:${SAY:0:2}, digits/millions, num:${SAY:2}
+        _[n]um:XXX000000 => num:${SAY:0:3}, digits/millions
+        _[n]um:XXXXXXXXX => num:${SAY:0:3}, digits/millions, num:${SAY:3}
+        _datetime::. => date:AdBY 'digits/at' IMp:${SAY}
+        _date::. => date:AdBY:${SAY}
+        _time::. => date:IMp:${SAY}
+
+[hu](digit-base,date-base)
+        _[n]um:0. => num:${SAY:1}
+        _[n]um:X => digits/${SAY}
+        _[n]um:1[1-9] => digits/10en, digits/${SAY:1}
+        _[n]um:2[1-9] => digits/20on, digits/${SAY:1}
+        _[n]um:[1-9]0 =>  digits/${SAY}
+        _[n]um:[3-9][1-9] =>  digits/${SAY:0:1}0, num:${SAY:1}
+        _[n]um:XXX => num:${SAY:0:1}, digits/hundred, num:${SAY:1}
+        _[n]um:X000 => num:${SAY:0:1}, digits/thousand
+        _[n]um:XXXX => num:${SAY:0:1}, digits/thousand, num:${SAY:1}
+        _[n]um:XX000 => num:${SAY:0:2}, digits/thousand
+        _[n]um:XXXXX => num:${SAY:0:2}, digits/thousand, num:${SAY:2}
+        _[n]um:XXX000 => num:${SAY:0:3}, digits/thousand
+        _[n]um:XXXXXX => num:${SAY:0:3}, digits/thousand, num:${SAY:3}
+        _[n]um:X000000 => num:${SAY:0:1}, digits/million
+        _[n]um:XXXXXXX => num:${SAY:0:1}, digits/million, num:${SAY:1}
+        _[n]um:XX000000 => num:${SAY:0:2}, digits/million
+        _[n]um:XXXXXXXX => num:${SAY:0:2}, digits/million, num:${SAY:2}
+        _[n]um:XXX000000 => num:${SAY:0:3}, digits/million
+        _[n]um:XXXXXXXXX => num:${SAY:0:3}, digits/million, num:${SAY:3}
+        _[n]um:X000000000 => num:${SAY:0:1}, digits/billion
+        _[n]um:XXXXXXXXXX => num:${SAY:0:1}, digits/billion, num:${SAY:1}
+        _[n]um:XX000000000 => num:${SAY:0:2}, digits/billion
+        _[n]um:XXXXXXXXXXX => num:${SAY:0:2}, digits/billion, num:${SAY:2}
+        _[n]um:XXX000000000 => num:${SAY:0:3}, digits/billion
+        _[n]um:XXXXXXXXXXXX => num:${SAY:0:3}, digits/billion, num:${SAY:3}
+        _datetime::. => date:YBdA k 'ora' M 'perc':${SAY}
+        _date::. => date:YBdA:${SAY}
+        _time::. => date:k 'ora' M 'perc':${SAY}
+
+[fr](date-base,digit-base)
+        _[n]um:0. => num:${SAY:1}
+        _[n]um:X => digits/${SAY}
+        _[n]um:1X => digits/${SAY}
+        _[n]um:[2-9]0 =>  digits/${SAY}
+        _[n]um:[2-6]1 => digits/${SAY:0:1}0, vm-and, digits/${SAY:1}
+        _[n]um:71 => digits/60, vm-and, num:1${SAY:1}
+        _[n]um:7X => digits/60, num:1${SAY:1}
+        _[n]um:9X => digits/80, num:1${SAY:1}
+        _[n]um:[2-9][1-9] =>  digits/${SAY:0:1}0, num:${SAY:1}
+        _[n]um:100 => digits/hundred
+        _[n]um:1XX => digits/hundred, num:${SAY:1}
+        _[n]um:[2-9]00 => num:${SAY:0:1}, digits/hundred
+        _[n]um:[2-9]XX => num:${SAY:0:1}, digits/hundred, num:${SAY:1}
+        _[n]um:1000 => digits/thousand
+        _[n]um:1XXX => digits/thousand, num:${SAY:1}
+        _[n]um:[2-9]000 => num:${SAY:0:1}, digits/thousand
+        _[n]um:[2-9]XXX => num:${SAY:0:1}, digits/thousand, num:${SAY:1}
+        _[n]um:XX000 => num:${SAY:0:2}, digits/thousand
+        _[n]um:XXXXX => num:${SAY:0:2}, digits/thousand, num:${SAY:2}
+        _[n]um:XXX000 => num:${SAY:0:3}, digits/thousand
+        _[n]um:XXXXXX => num:${SAY:0:3}, digits/thousand, num:${SAY:3}
+        _[n]um:1000000 => num:${SAY:0:1}, digits/million
+        _[n]um:1XXXXXX => num:${SAY:0:1}, digits/million, num:${SAY:1}
+        _[n]um:[2-9]000000 => num:${SAY:0:1}, digits/million
+        _[n]um:[2-9]XXXXXX => num:${SAY:0:1}, digits/million, num:${SAY:1}
+        _[n]um:XX000000 => num:${SAY:0:2}, digits/million
+        _[n]um:XXXXXXXX => num:${SAY:0:2}, digits/million, num:${SAY:2}
+        _[n]um:XXX000000 => num:${SAY:0:3}, digits/million
+        _[n]um:XXXXXXXXX => num:${SAY:0:3}, digits/million, num:${SAY:3}
+        _datetime::. => date:AdBY 'digits/at' H 'hours' M 'perc':${SAY}
+        _date::. => date:AdBY:${SAY}
+        _time::. => date:H 'hours' M 'perc':${SAY}
+        _pho[n]e:XXXX => num:${SAY:0:2}, num:${SAY:2:2}
+        _pho[n]e:0[1-9]XXXXXXXX => num:${SAY:0:1}, num:${SAY:1:1}, num:${SAY:2:2}, num:${SAY:4:2}, num:${SAY:6:2}, num:${SAY:8:2}
+        _pho[n]e:. => digit:${SAY}
+
+[es](date-base,digit-base)
+        _[n]um:0. => num:${SAY:1}
+        _[n]um:X => digits/${SAY}
+        _[n]um:1X => digits/${SAY}
+        _[n]um:[2-9]0 => digits/${SAY}
+        _[n]um:2[1-9] => digits/20-and, digits/${SAY:1}
+        _[n]um:[3-9][1-9] =>  digits/${SAY:0:1}0, vm-and, digits/${SAY:1}
+        _[n]um:100 => digits/hundred
+        _[n]um:1XX => digits/100-and, num:${SAY:1}
+        _[n]um:[2-9]00 => digits/${SAY}
+        _[n]um:[2-9]XX => digits/${SAY:0:1}00, num:${SAY:1}
+        _[n]um:1000 => digits/thousand
+        _[n]um:1XXX => digits/thousand, num:${SAY:1}
+        _[n]um:[2-9]000 => num:${SAY:0:1}, digits/thousand
+        _[n]um:[2-9]XXX => num:${SAY:0:1}, digits/thousand, num:${SAY:1}
+        _[n]um:XX000 => num:${SAY:0:2}, digits/thousand
+        _[n]um:XXXXX => num:${SAY:0:2}, digits/thousand, num:${SAY:2}
+        _[n]um:XXX000 => num:${SAY:0:3}, digits/thousand
+        _[n]um:XXXXXX => num:${SAY:0:3}, digits/thousand, num:${SAY:3}
+        _[n]um:1000000 => digits/1M, digits/million
+        _[n]um:1XXXXXX => digits/1M, digits/million, num:${SAY:1}
+        _[n]um:[2-9]000000 => num:${SAY:0:1}, digits/millions
+        _[n]um:[2-9]XXXXXX => num:${SAY:0:1}, digits/millions, num:${SAY:1}
+        _[n]um:XX000000 => num:${SAY:0:2}, digits/millions
+        _[n]um:XXXXXXXX => num:${SAY:0:2}, digits/millions, num:${SAY:2}
+        _[n]um:XXX000000 => num:${SAY:0:3}, digits/millions
+        _[n]um:XXXXXXXXX => num:${SAY:0:3}, digits/millions, num:${SAY:3}
+        _[n]um:XXXX000000 => num:${SAY:0:4}, digits/millions
+        _[n]um:XXXXXXXXXX => num:${SAY:0:4}, digits/millions, num:${SAY:4}
+        _datetime::. => date:Ad 'letters/d' B 'letters/d' Y 'digits/at' HMp:${SAY}
+        _date::. => date:Ad 'letters/d' B 'letters/d' Y:${SAY}
+        _time::. => date:HMp:${SAY}
+
+[da](date-base,digit-base)
+        _[n]um:0. => num:${SAY:1}
+        _[n]um:X => digits/${SAY}
+        _[n]um:1X => digits/${SAY}
+        _[n]um:[2-9]0 => digits/${SAY}
+        _[n]um:[2-9][1-9] => digits/${SAY:1}-and, digits/${SAY:0:1}0
+        _[n]um:100 => digits/1N, digits/hundred
+        _[n]um:1XX => digits/1N, digits/hundred, num:${SAY:1}
+        _[n]um:[2-9]00 => digits/${SAY:0:1}, digits/hundred
+        _[n]um:[2-9]XX => digits/${SAY:0:1}, digits/hundred, num:${SAY:1}
+        _[n]um:1000 => digits/1N, digits/thousand
+        _[n]um:1XXX => digits/1N, digits/thousand, num:${SAY:1}
+        _[n]um:[2-9]000 => digits/${SAY:0:1}, digits/thousand
+        _[n]um:[2-9]XXX => digits/${SAY:0:1}, digits/thousand, num:${SAY:1}
+        _[n]um:XX000 => num:${SAY:0:2}, digits/thousand
+        _[n]um:XXXXX => num:${SAY:0:2}, digits/thousand, num:${SAY:2}
+        _[n]um:XXX000 => num:${SAY:0:3}, digits/thousand
+        _[n]um:XXXXXX => num:${SAY:0:3}, digits/thousand, num:${SAY:3}
+        _[n]um:X000000 => digits/${SAY:0:1}, digits/million
+        _[n]um:XXXXXXX => digits/${SAY:0:1}, digits/million, num:${SAY:1}
+        _[n]um:XX000000 => num:${SAY:0:2}, digits/millions
+        _[n]um:XXXXXXXX => num:${SAY:0:2}, digits/millions, num:${SAY:2}
+        _[n]um:XXX000000 => num:${SAY:0:3}, digits/millions
+        _[n]um:XXXXXXXXX => num:${SAY:0:3}, digits/millions, num:${SAY:3}
+        _[n]um:X000000000 => num:${SAY:0:1}, digits/billion
+        _[n]um:XXXXXXXXXX => num:${SAY:0:1}, digits/billion, num:${SAY:1}
+        _[n]um:XX000000000 => num:${SAY:0:2}, digits/billion
+        _[n]um:XXXXXXXXXXX => num:${SAY:0:2}, digits/billion, num:${SAY:2}
+        _[n]um:XXX000000000 => num:${SAY:0:3}, digits/billion
+        _[n]um:XXXXXXXXXXXX => num:${SAY:0:3}, digits/billion, num:${SAY:3}
+        _datetime::. => date:AdBY 'digits/at' kM:${SAY}
+        _date::. => date:AdBY:${SAY}
+        _time::. => date:HM:${SAY}
+        _e[n]um:X => digits/h-${SAY}
+        _e[n]um:1X => digits/h-${SAY}
+        _e[n]um:[2-9]0 => digits/h-${SAY}
+        _e[n]um:[2-9][1-9] => digits/${SAY:1}-and, digits/h-${SAY:0:1}0
+        _e[n]um:100 => digits/1N, digits/h-hundred
+        _e[n]um:1XX => digits/1N, digits/h-hundred, enum:${SAY:1}
+        _e[n]um:[2-9]00 => num:${SAY:0:1}, digits/h-hundred
+        _e[n]um:[2-9]XX => num:${SAY:0:1}, digits/h-hundred, enum:${SAY:1}
+[general]
+    context=public                  ; Default context for incoming calls. Defaults to 'default'
+    allowoverlap=no                 ; Disable overlap dialing support. (Default is yes)
+    udpbindaddr=0.0.0.0             ; IP address to bind UDP listen socket to (0.0.0.0 binds to all)
+    tcpenable=no                    ; Enable server for incoming TCP connections (default is no)
+    tcpbindaddr=0.0.0.0             ; IP address for TCP server to bind to (0.0.0.0 binds to all interfaces)
+    transport=udp                   ; Set the default transports.  The order determines the primary default transport.
+    srvlookup=yes                   ; Enable DNS SRV lookups on outbound calls
+
+[authentication]
+
+[basic-options](!)                ; a template
+            dtmfmode=rfc2833
+            context=from-office
+            type=friend
+
+[natted-phone](!,basic-options)   ; another template inheriting basic-options
+            directmedia=no
+            host=dynamic
+
+[public-phone](!,basic-options)   ; another template inheriting basic-options
+            directmedia=yes
+
+[my-codecs](!)                    ; a template for my preferred codecs
+            disallow=all
+            allow=ilbc
+            allow=g729
+            allow=gsm
+            allow=g723
+            allow=ulaw
+
+[ulaw-phone](!)                   ; and another one for ulaw-only
+            disallow=all
+            allow=ulaw
+[clear-mwi]
+    Event=>message-summary
+    Content-type=>application/simple-message-summary
+    Content=>Messages-Waiting: no
+    Content=>Message-Account: sip:asterisk@127.0.0.1
+    Content=>Voice-Message: 0/0 (0/0)
+    Content=>
+
+[aastra-check-cfg]
+    Event=>check-sync
+
+[aastra-xml]
+    Event=>aastra-xml
+
+[digium-check-cfg]
+    Event=>check-sync
+
+[linksys-cold-restart]
+    Event=>reboot_now
+
+[linksys-warm-restart]
+    Event=>restart_now
+
+[polycom-check-cfg]
+    Event=>check-sync
+
+[sipura-check-cfg]
+    Event=>resync
+
+[sipura-get-report]
+    Event=>report
+
+[snom-check-cfg]
+    Event=>check-sync\;reboot=false
+
+[snom-reboot]
+    Event=>check-sync\;reboot=true
+
+[cisco-check-cfg]
+    Event=>check-sync
+[general]
+    bindaddr=0.0.0.0	; Address to bind to
+    bindport=2000		; Port to bind to, default tcp/2000
+    dateformat=M-D-Y	; M,D,Y in any order (6 chars max)
+    keepalive=120
+
+[lines]
+
+[devices]
+[general]
+[interfaces]
+
+[mailboxes]
+[test_sorcery_section]
+    test=memory
+
+[test_sorcery_cache]
+    test/cache=test
+    test=memory
+[threadpool]
+
+[declined_message_types]
+[general]
+[hey]
+    bob=98
+    joe=41
+
+[hey2]
+    type=zombies
+    bob=97
+    joe=40
+
+[hey3]
+    bob=96
+    joe=39
+[general]
+    udptlstart=4000
+    udptlend=4999
+    udptlfecentries = 3
+    udptlfecspan = 3
+    use_even_ports = no
+[general]
+    port=5000                    ; UDP port
+[general]
+    fullname = New User
+    userbase = 6000
+    hasvoicemail = yes
+    vmsecret = 1234
+    hassip = yes
+    hasiax = yes
+    hasmanager = no
+    callwaiting = yes
+    threewaycalling = yes
+    callwaitingcallerid = yes
+    transfer = yes
+    canpark = yes
+    cancallforward = yes
+    callreturn = yes
+    callgroup = 1
+    pickupgroup = 1
+[general]
+    format=wav49|gsm|wav
+    serveremail=asterisk
+    attach=yes
+    skipms=3000
+    maxsilence=10
+    silencethreshold=128
+    maxlogins=3
+    emaildateformat=%A, %B %d, %Y at %r
+    pagerdateformat=%A, %B %d, %Y at %r
+    sendvoicemail=yes ; Allow the user to compose and send a voicemail while inside
+
+[zonemessages]
+    eastern=America/New_York|'vm-received' Q 'digits/at' IMp
+    central=America/Chicago|'vm-received' Q 'digits/at' IMp
+    central24=America/Chicago|'vm-received' q 'digits/at' H N 'hours'
+    military=Zulu|'vm-received' q 'digits/at' H N 'hours' 'phonetic/z_p'
+    european=Europe/Copenhagen|'vm-received' a d b 'digits/at' HM
+
+[default]
+    1234 => 4242,Example Mailbox,root@localhost
+
+[myaliases]
+    1234@devices => 1234@default
+
+[other]
+    1234 => 5678,Company2 User,root@localhost
+[general]
+    cards=0
+    indication=1
+    dtmfidd=3000
+    relaxdtmf=1
+    break-for-dtmf=yes
+    timer_period_ring=4000
+
+[interfaces]
+    language=en
+    context=public
+    echocancel=off
+    callerid=bell
+    usepolaritycid=0
+    useloopdrop=1
+    usenativebridge=1
+    group=1
+    callgroup=1
+    pickupgroup=1
+    grunttimeout=3600
+    mode=immediate
+[general]
