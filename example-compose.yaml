@@ -12,7 +12,7 @@ services:
         build: ./build/asterisk
         image: local/asterisk
         volumes:
-            - "./shared/asterisk/conf:/etc/asterisk"
+            - "your_asterisk_conf.mine_path:/etc/asterisk/conf.mine"
         network_mode: host
 
     # Mednafen multiplay server
@@ -47,9 +47,8 @@ services:
         build: /data/docker/web-server/content
         image: local/content
         volumes:
-            - "./keys/server.key:/etc/ssl/server.key"
-            - "./keys/server.crt:/etc/ssl/server.crt"
-            - "./shared//web-server/content:/web"
+            - "your_ssl_path:/etc/ssl"
+            - "your_content_path:/web"
         ports:
             - "443:443/tcp"
 
@@ -70,9 +69,9 @@ services:
         build: ./build/web-server/audio-server-api
         image: local/audio-api
         volumes:
-            - "./shared/web-server/audio-server-api/config.json:/web/config.json"
-            - "/your_data_path:/music"
-            - "./keys:/etc/ssl"
+            - "your_config_path/config.json:/web/config.json"
+            - "your_data_path:/music"
+            - "your_ssl_path:/etc/ssl"
         ports:
             - "444:444/tcp"
 
@@ -84,7 +83,7 @@ services:
         build: ./build/web-server/audio-server-application
         image: local/audio-applicaiton
         volumes:
-            - "./shared/web-server/audio-server-application/config.js:/web/config/config.js"
-            - "./keys:/etc/ssl"
+            - "your_config_path/config.js:/web/config/config.js"
+            - "your_ssl_path:/etc/ssl"
         ports:
-            - "443:443/tcp"
+                - "443:443/tcp"
