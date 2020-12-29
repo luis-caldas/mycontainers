@@ -8,7 +8,7 @@ FROM frolvlad/alpine-glibc
 RUN apk add --update libstdc++ libstdc++6
 
 # Copy our configuration to the container
-COPY conf /ms
+COPY conf/standard.conf /ms/standard.conf
 
 # Change the workdir to a default folder
 WORKDIR /ms
@@ -20,4 +20,4 @@ COPY mednafen-server mednafen-server
 EXPOSE 4046
 
 # Start the command
-CMD ["./mednafen-server", "conf/standard.conf"]
+CMD ["./mednafen-server", "standard.conf"]
