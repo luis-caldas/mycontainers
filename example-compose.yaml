@@ -1,0 +1,41 @@
+# Use version 2
+version: "2.0"
+
+# My service collection
+services:
+
+    # Telephony asterisk
+    asterisk:
+        container_name: asterisk
+        hostname: symbols
+        restart: unless-stopped
+        build: ./build/asterisk
+        image: local/asterisk
+        volumes:
+            - "./shared/asterisk/conf:/etc/asterisk"
+        network_mode: host
+
+    # Mednafen multiplay server
+    mednafen:
+        container_name: mednafen
+        hostname: gamy
+        restart: unless-stopped
+        build: ./build/mednafen
+        image: local/mednafen
+        ports:
+            - "4046:4046/tcp"
+
+    # SSHD for reverse tunnels
+    sshd:
+        container_name: sshd
+        hostname: essehodie
+        restart: unless-stopped
+        build:
+            context: ./build/sshd
+            args:
+                - USER=your_user
+                - PASSWORD=your_password
+        image: local/sshd
+        ports:
+            - "2222:22/tcp"
+
