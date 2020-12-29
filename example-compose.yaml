@@ -47,7 +47,8 @@ services:
         build: /data/docker/web-server/content
         image: local/content
         volumes:
-            - "./ssl:/etc/ssl"
+            - "./keys/server.key:/etc/ssl/server.key"
+            - "./keys/server.crt:/etc/ssl/server.crt"
             - "./shared/content:/web"
         ports:
             - "443:443/tcp"

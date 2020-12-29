@@ -14,9 +14,6 @@ This folder contains Dockerfiles and needed configuration files for building the
 
 This folder contains shared configurations that are mounted volumes on the container and can be accessed with the container running
 
-#### `ssl/`
+#### `keys/`
 
-Put your ssl keys in this folder with the following names:
-
-  - `server.key`
-  - `server.crt`
+Put your keys in this folder
