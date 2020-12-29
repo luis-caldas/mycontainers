@@ -114,7 +114,7 @@ services:
         build: ./build/mednafen
         image: local/mednafen
         ports:
-                - "4046:4046/tcp"
+             - "4046:4046/tcp"
 
     # SSHD for reverse tunnels
     sshd:
