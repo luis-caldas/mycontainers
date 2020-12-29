@@ -6,6 +6,10 @@ Collection of containers
 
 Example of how the containers could be configured with docker-compose
 
-#### Folders
+#### `build/`
 
-Folders contain extra files to build a container and also its configuration files
+This folder contains Dockerfiles and needed configuration files for building the my containers
+
+#### `shared/`
+
+This folder contains shared configurations that are mounted volumes on the container and can be accessed with the container running
