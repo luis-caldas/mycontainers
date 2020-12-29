@@ -62,3 +62,29 @@ services:
         image: local/redirect
         ports:
             - "80:80/tcp"
+
+    audio-api:
+        container_name: audio-api
+        hostname: music
+        restart: unless-stopped
+        build: ./build/web-server/audio-server-api
+        image: local/audio-api
+        volumes:
+            - "./shared/web-server/audio-server-api/config.json:/web/config.json"
+            - "/your_data_path:/music"
+            - "./keys:/etc/ssl"
+        ports:
+            - "444:444/tcp"
+
+    # My audio frontend
+    audio-application:
+        container_name: audio-application
+        hostname: frame
+        restart: unless-stopped
+        build: ./build/web-server/audio-server-application
+        image: local/audio-applicaiton
+        volumes:
+            - "./shared/web-server/audio-server-application/config.js:/web/config/config.js"
+            - "./keys:/etc/ssl"
+        ports:
+            - "443:443/tcp"

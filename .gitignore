@@ -1,6 +1,8 @@
 shared/asterisk/conf/conf.mine/*
 !shared/asterisk/conf/conf.mine/README.md
-shared/content/*
-!shared/content/README.md
-ssl/*
-!ssl/README.md
+shared/web-server/content/*
+!shared/web-server/content/README.md
+shared/web-server/audio-server-api/config.json
+shared/web-server/audio-server-application/config.js
+keys/*
+!keys/README.md

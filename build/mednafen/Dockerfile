@@ -5,7 +5,7 @@ FROM frolvlad/alpine-glibc
 # https://mednafen.github.io/releases/files/mednafen-server-0.5.2.tar.xz
 
 # Install c++ libraries
-RUN apk add libstdc++ libstdc++6
+RUN apk add --update libstdc++ libstdc++6
 
 # Copy our configuration to the container
 COPY conf /ms

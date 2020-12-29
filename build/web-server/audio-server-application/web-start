@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/nmods/node_modules/.bin/http-server -p 443 -S -K /etc/ssl/box.key -C /etc/ssl/box.crt
+
