@@ -1,23 +1,28 @@
 # vim:set ft=dockerfile:
-FROM alpine:latest
+FROM debian:stable
 
 # Install some packages needed for extra asterisk functionality
-RUN apk add --update \
+RUN apt update && apt upgrade -y
+
+# Install extra packages for asterisk
+RUN apt install -y \
     perl \
-    perl-libwww \
-    perl-lwp-protocol-https \
+    libwww-perl \
+    liblwp-protocol-https-perl \
     sox \
     mpg123 \
     wget
 
 # Install asterisk from the apk
-RUN apk add --update \
+RUN apt install -y \
     asterisk \
-    asterisk-sounds-en \
-    asterisk-sounds-moh
+    asterisk-core-sounds-en \
+    asterisk-moh-opsound-g722 \
+    asterisk-moh-opsound-gsm \
+    asterisk-moh-opsound-wav
 
 # Install googletts and fix its permission
-COPY googletts.agi /var/lib/asterisk/agi-bin/googletts.agi
+COPY googletts.agi /usr/share/asterisk/agi-bin/googletts.agi
 
 # Install my configuration files
 COPY app/conf /etc/asterisk
