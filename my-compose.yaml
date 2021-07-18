@@ -13,6 +13,7 @@ services:
         image: local/asterisk
         volumes:
             - "your_asterisk_conf.mine_path:/etc/asterisk/conf.mine"
+            - "your_voicemail_path:/var/spool/asterisk/voicemail"
         network_mode: host
 
     # DNS updater
