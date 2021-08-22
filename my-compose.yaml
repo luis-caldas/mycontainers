@@ -13,6 +13,7 @@ services:
         image: local/asterisk
         volumes:
             - "your_asterisk_conf.mine_path:/etc/asterisk/conf.mine"
+            - "your_asterisk_sounds_path:/var/lib/asterisk/sounds/custom"
             - "your_voicemail_path:/var/spool/asterisk/voicemail"
         network_mode: host
 
@@ -69,7 +70,7 @@ services:
         ]
         volumes: 
             - "your_smbpasswd_path/smbpasswd:/psw/smbpasswd"
-            - "yout_share_path:/share/DVD"
+            - "your_share_path:/share/DVD"
         ports:
             - "137:137/udp"
             - "138:138/udp"
