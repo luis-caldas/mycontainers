@@ -1,2 +1,2 @@
-0 * * * * cd /met-weathers && python3 main.py
+0 * * * * cd /met-weathers && python3 main.py >> /var/log/cron.log 2>&1
 
