@@ -31,4 +31,5 @@ WORKDIR /met-weathers
 RUN git clone https://github.com/luis-caldas/get-weathers .
 
 # Initialize the weaters app
-CMD cron && tail -f /var/log/cron.log
+COPY entrypoint.sh entrypoint.sh
+ENTRYPOINT [ "entrypoint.sh" ]
