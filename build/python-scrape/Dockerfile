@@ -18,7 +18,8 @@ RUN crontab /etc/cron.d/cronfile
 RUN touch /var/log/cron.log
 
 # Update and install pip packages
-RUN pip install --upgrade \
+RUN pip install --upgrade pip
+RUN pip install \
 	requests \
 	fpdf \
 	bs4
