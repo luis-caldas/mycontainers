@@ -31,5 +31,5 @@ WORKDIR /met-weathers
 RUN git clone https://github.com/luis-caldas/get-weathers .
 
 # Initialize the weaters app
-COPY entrypoint.sh entrypoint.sh
-ENTRYPOINT [ "entrypoint.sh" ]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
