@@ -1,0 +1,2 @@
+0 * * * * cd /met-weathers && python3 main.py
+

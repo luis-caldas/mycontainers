@@ -27,6 +27,19 @@ services:
         environment:
             - KEY=your_freedns_key
 
+    # Weather sender
+    weather:
+        container_name: weather
+        hostname: spider
+        restart: unless-stopped
+        build: ./build/python-scrape
+        image: local/python-scrape
+        environment:
+            - SMTP_USER=your_user
+            - SMTP_SERVER=your_server
+            - SMTP_PASSWORD=your_password
+            - SMTP_MAIL_TO=who_to_send_to
+
     # My minecraft server
     minecraft:
         container_name: minecraft
