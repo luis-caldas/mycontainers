@@ -8,8 +8,11 @@ RUN apt update && apt upgrade -y
 RUN apt install -y \
 	git \
 	cron \
+	openssl \
 	python3 \
-	python3-pip
+	python3-pip \
+	python3-bs4 \
+	python3-requests
 
 # Set up cron
 COPY cronfile /etc/cron.d/cronfile
@@ -19,9 +22,7 @@ RUN touch /var/log/cron.log
 
 # Update and install pip packages
 RUN pip3 install --upgrade \
-	requests \
-	fpdf \
-	bs4
+	fpdf
 
 # Change workdir to the new package path
 WORKDIR /met-weathers
