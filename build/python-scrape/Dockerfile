@@ -11,7 +11,6 @@ RUN apt install -y \
 	openssl \
 	python3 \
 	python3-pip \
-	python3-bs4 \
 	python3-requests
 
 # Set up cron
@@ -22,6 +21,7 @@ RUN touch /var/log/cron.log
 
 # Update and install pip packages
 RUN pip3 install --upgrade \
+	bs4 \
 	fpdf
 
 # Change workdir to the new package path
