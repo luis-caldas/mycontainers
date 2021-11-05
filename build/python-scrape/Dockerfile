@@ -28,6 +28,7 @@ RUN pip3 install --upgrade \
 WORKDIR /met-weathers
 
 # Clone the package
+ADD https://api.github.com/repos/luis-caldas/get-weathers/git/refs/heads/master version.json
 RUN git clone https://github.com/luis-caldas/get-weathers .
 
 # Initialize the weaters app
