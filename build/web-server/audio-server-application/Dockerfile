@@ -19,7 +19,7 @@ RUN chown -R node:node /nmods
 RUN apk add --update git
 
 # Download the api repo
-ADD https://api.github.com/repos/luis-caldas/web-audio-server-application/git/refs/heads/master version.json
+ADD https://api.github.com/repos/luis-caldas/web-audio-server-application/git/refs/heads/master /version.json
 RUN git clone "https://github.com/luis-caldas/web-audio-server-application" /web
 
 # Change to the project folder
