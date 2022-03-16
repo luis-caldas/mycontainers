@@ -22,7 +22,10 @@ RUN apt install -y \
     asterisk-moh-opsound-wav
 
 # Install googletts and fix its permission
-COPY googletts.agi /usr/share/asterisk/agi-bin/googletts.agi
+COPY app/googletts.agi /usr/share/asterisk/agi-bin/googletts.agi
+
+# Install songs
+COPY app/songs /usr/share/asterisk/songs
 
 # Install my configuration files
 COPY app/conf /etc/asterisk
