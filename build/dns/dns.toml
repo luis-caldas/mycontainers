@@ -1,0 +1,33 @@
+server_names = ['quad9']
+
+listen_addresses = ['127.0.0.1:53']
+
+# Bootstrap resolvers for TLS resolving and lists downloading
+bootstrap_resolvers = ['9.9.9.11:53', '1.1.1.1:53', '8.8.8.8:53']
+
+max_clients = 10240
+
+ipv4_servers = true
+ipv6_servers = false
+
+dnscrypt_servers = true
+doh_servers = false  # Too slow
+odoh_servers = false
+
+require_dnssec = false
+require_nolog = true
+require_nofilter = true
+
+disabled_server_names = []
+
+force_tcp = false
+
+timeout = 5000
+cert_refresh_delay = 240
+
+ignore_system_dns = true
+
+[static.'quad9']
+# TLS + Unsecure
+stamp = 'sdns://AQYAAAAAAAAADTkuOS45LjEwOjg0NDMgZ8hHuMh1jNEgJFVDvnVnRt803x2EwAuMRwNo34Idhj4ZMi5kbnNjcnlwdC1jZXJ0LnF1YWQ5Lm5ldA'
+
