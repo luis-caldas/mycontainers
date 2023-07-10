@@ -1,6 +1,6 @@
 server_names = ['quad9']
 
-listen_addresses = ['127.0.0.1:53']
+listen_addresses = ['0.0.0.0:53']
 
 # Bootstrap resolvers for TLS resolving and lists downloading
 bootstrap_resolvers = ['9.9.9.11:53', '1.1.1.1:53', '8.8.8.8:53']
