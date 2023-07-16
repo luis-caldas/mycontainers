@@ -28,6 +28,6 @@ cert_refresh_delay = 240
 ignore_system_dns = true
 
 [static.'quad9']
-# TLS + Unsecure
+# DNSCrypt + Unsecure
 stamp = 'sdns://AQYAAAAAAAAADTkuOS45LjEwOjg0NDMgZ8hHuMh1jNEgJFVDvnVnRt803x2EwAuMRwNo34Idhj4ZMi5kbnNjcnlwdC1jZXJ0LnF1YWQ5Lm5ldA'
 
